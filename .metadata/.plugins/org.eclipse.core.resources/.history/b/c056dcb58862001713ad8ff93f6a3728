@@ -1,0 +1,8 @@
+
+# Oracle settings
+spring.datasource.name=bdgi
+spring.datasource.type=oracle.jdbc.pool.OracleDataSource
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:gibdschema
+spring.datasource.username=sys as SYSDBA
+spring.datasource.password=root
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserService {
 
 	@Autowired
-	private URepository userRepository;
+	private UserRepository userRepository;
 
 	public Iterable<Utilisateur> getUsers() {
 		return userRepository.findAll();

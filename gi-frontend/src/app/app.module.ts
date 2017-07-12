@@ -5,7 +5,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { AppComponent } from './app.component';
-import { SuperuserComponent, } from './superuser/superuser.component';
+import { SuperuserComponent} from './superuser/superuser.component';
 import { NewuserComponent } from './newuser/newuser.component';
 import { ListwithdetComponent } from './listwithdet/listwithdet.component';
 import { SimpleuserComponent } from './simpleuser/simpleuser.component';

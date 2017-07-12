@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-simpleuser',
   templateUrl: './simpleuser.component.html',
   styleUrls: ['./simpleuser.component.css']
 })
-export class SimpleuserComponent implements OnInit {
+export class SimpleuserComponent {
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  logoutUser() {
 
   }
 

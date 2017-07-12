@@ -1,7 +1,6 @@
-package com.test.test.web;
+package com.ssm.oab.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,13 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api")
-public class HomeController {
+public class UserController {
 
 	@Autowired
-	private Service service;
-
-	@Value("${conference.name:everybody}")
-	private String conference;
+	private UserService service;
 
 	@RequestMapping(value = "/users")
 	public Iterable<Utilisateur> getUsers() {
@@ -38,7 +34,7 @@ public class HomeController {
 		service.update(utilisateur);
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public Utilisateur create(@RequestBody Utilisateur utilisateurToSave) {
 		return service.create(utilisateurToSave);
 	}

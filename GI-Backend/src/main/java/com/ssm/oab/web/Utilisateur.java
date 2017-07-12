@@ -1,4 +1,4 @@
-package com.test.test.web;
+package com.ssm.oab.web;
 
 import java.io.Serializable;
 

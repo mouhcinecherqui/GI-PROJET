@@ -1,4 +1,4 @@
-package com.test.test.web;
+package com.ssm.oab.web;
 
 import java.io.Serializable;
 
@@ -14,17 +14,17 @@ public class Projet implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "DESCRIPTION_PROJET")
+	@Column(name = "DESCRIPTIONPROJET")
 	private String descriptionprojet;
 	
-	@Column(name = "NOM_PROJET")
+	@Column(name = "NOMPROJET")
 	private String nomprojet;
 
-	@Column(name = "NOM_COMPLET")
+	@Column(name = "NOMCOMPLET")
 	private String nomcomplet;
 
 	@Id
-	@Column(name = "CODE_PROJET")
+	@Column(name = "CODEPROJET")
 	private String codeprojet;
 
 	public Projet() {

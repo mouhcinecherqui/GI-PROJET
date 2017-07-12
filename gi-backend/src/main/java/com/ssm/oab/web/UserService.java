@@ -1,12 +1,12 @@
-package com.test.test.web;
+package com.ssm.oab.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class UserService {
 
 	@Autowired
-	private IUserRepository userRepository;
+	private URepository userRepository;
 
 	public Iterable<Utilisateur> getUsers() {
 		return userRepository.findAll();
@@ -29,4 +29,5 @@ public class Service {
 	public void delete(String codeAlliance) {
 		userRepository.delete(codeAlliance);
 	}
+
 }

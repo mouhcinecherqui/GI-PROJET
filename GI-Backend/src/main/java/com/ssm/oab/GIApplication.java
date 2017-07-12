@@ -1,10 +1,10 @@
-package com.test.test;
+package com.ssm.oab;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestApplication {
+public class GIApplication {
 	
 //	@Configuration
 //	static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter{
@@ -17,6 +17,6 @@ public class TestApplication {
 //	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestApplication.class, args);
+		SpringApplication.run(GIApplication.class, args);
 	}
 }

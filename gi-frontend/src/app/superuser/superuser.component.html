@@ -1,0 +1,194 @@
+<body>
+	<div *ngIf="superuser">
+		<div class="row">
+			<div class="col-xs-5"></div>
+			<div class="col-xs-2">
+				<select style="text-align: center;" name="Domaine"
+					class="form-control">
+					<option>ALL</option>
+					<option>Domaine 1</option>
+					<option>Domaine 2</option>
+					<option>Domaine 3</option>
+					<option>Domaine 4</option>
+				</select>
+
+			</div>
+			<div class="col-xs-4"></div>
+			<div class="col-xs-1">
+				<button routerLink="/logout" routerLinkActive="active-link"
+					type="submit" class="btn btn-primary btn-sm center-block"
+					(click)="logoutUser()">logout</button>
+			</div>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li [class.active]="ifList"><a (click)="showList()">Liste de
+					collaborateurs</a></li>
+			<li [class.active]="ifCreate"><a (click)="showCreation()">
+					creation</a></li>
+			<li [class.active]="ifAdmin"><a (click)="showAdmin()">Admin</a></li>
+
+			<li>
+				<form class="navbar-form navbar-left"></form>
+			</li>
+
+		</ul>
+		<br>
+		<div *ngIf="ifList">
+			<div class="row"></div>
+			<div class="container" class="col-xs-5">
+				<!-- 			<h2>Liste de collaborateurs</h2> -->
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-search"></i></span> <input id="search"
+						type="text" class="form-control" name="search"
+						placeholder="Search">
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Firstname</th>
+							<th>Lastname</th>
+							<th>Code Alliance</th>
+							<th>view details</th>
+						</tr>
+					</thead>
+					<tbody *ngFor="let user of users">
+
+						<tr>
+							<td>{{user.firstName}}</td>
+							<td>{{user.lastName}}</td>
+							<td>{{user.codeAlliance}}</td>
+							<th><p>
+									<a routerLink="/viewdetails"
+										(click)="getDetails(user.codeAlliance)">view details</a>
+								</p></th>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<router-outlet></router-outlet>
+		</div>
+		<div *ngIf="ifCreate">
+			<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="container" class="col-xs-4">
+					<form>
+						<br> <br>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input id="first name"
+								type="text" class="form-control" name="firstname"
+								placeholder="firstname">
+						</div>
+						<br> <br>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input id="lastname"
+								type="text" class="form-control" name="lastname"
+								placeholder="lastname">
+						</div>
+						<br> <br>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock"></i></span> <input id="password"
+								type="password" class="form-control" name="password"
+								placeholder="Password">
+						</div>
+						<br> <br>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-credit-card"></i></span> <input
+								id="Code Alliance" type="text" class="form-control"
+								name="Code Alliance" placeholder="Code Alliance">
+						</div>
+						<br> <br>
+						<div class=" form-group">
+							<select name="Role" class="form-control">
+								<option>Role</option>
+								<option>Responsable</option>
+								<option>Collaborateur</option>
+							</select>
+						</div>
+						<br>
+						<div class=" form-group">
+							<select name="Domaine" class="form-control">
+								<option>Domaine</option>
+								<option>Domaine 1</option>
+								<option>Domaine 2</option>
+								<option>Domaine 3</option>
+								<option>Domaine 4</option>
+							</select>
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input id="email"
+								type="email" class="form-control" name="email"
+								placeholder="email">
+						</div>
+
+						<br> <br>
+
+						<button type="submit" routerLink="/superuser"
+							routerLinkActive="active-link" class="btn btn-success">Save</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</form>
+
+				</div>
+				<div class="col-xs-3"></div>
+				<div class="col-xs-1">
+					<button type="button" class="btn btn-sm center-block"
+						(click)="showList()">Back</button>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="ifAdmin">
+			<div class="row">
+				<div class="col-xs-7">
+					<table class="table table-striped" id="myTable">
+						<thead>
+							<tr>
+								<th>Code projet</th>
+								<th>Nom projet</th>
+								<th>Nom complet</th>
+								<th>Domaine</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Code projet1</td>
+								<td>Nom projet1</td>
+								<td>Nom complet1</td>
+								<td>MTM</td>
+
+							</tr>
+							<tr>
+								<td>Code projet2</td>
+								<td>Nom projet2</td>
+								<td>Nom complet2</td>
+								<td>MTM</td>
+							<tr>
+								<td>Code projet3</td>
+								<td>Nom projet3</td>
+								<td>Nom complet3</td>
+								<td>MTM</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+					<button type="button" class="btn btn-success">Save</button>
+					<button type="button" class="btn">Add</button>
+				</div>
+				<div class="col-xs-4"></div>
+				<div class="col-xs-1">
+					<button type="button" class="btn btn-sm center-block"
+						(click)="showList()">Back</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<router-outlet></router-outlet>

@@ -1,0 +1,31 @@
+<div *ngIf="authentication">
+	<div class="col-xs-4"></div>
+
+	<div class="container" class="col-xs-4">
+		<form method="post">
+			<div class="form-group">
+				<br> <br> <br> <br>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-user"></i></span> <input #userId id="email"
+						type="text" class="form-control" name="email" placeholder="Email"
+						value="{{login}}" >
+				</div>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-lock"></i></span> <input #userPwd id="password"
+					type="password" class="form-control" name="password"
+					placeholder="Password">
+			</div>
+			<div class="checkbox"></div>
+			<label><input type="checkbox"> Remember me</label>
+			<p>
+				<a routerLink="/forgetpwd" routerLinkActive="active-link">forget
+					password</a>
+			</p>
+			<button type="submit" (click)="connectUser(userId.value,  userPwd.value)">login</button>
+		</form>
+	</div>
+</div>
+<router-outlet></router-outlet>

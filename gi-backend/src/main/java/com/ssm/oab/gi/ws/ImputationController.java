@@ -1,11 +1,16 @@
-package com.ssm.oab.web;
+package com.ssm.oab.gi.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ssm.oab.gi.dao.entity.Imputation;
+import com.ssm.oab.gi.service.ImputationService;
+import com.ssm.oab.gi.service.dto.ImputationDTO;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -14,8 +19,13 @@ public class ImputationController {
 	private ImputationService service;
 
 	@RequestMapping(value = "/imputations")
-	public Iterable<Imputation> getimputations() {
+	public Iterable<ImputationDTO> getImputations() {
 		return service.getImputations();
+	}
+
+	@RequestMapping(value = "/imputations/mounth")
+	public Iterable<ImputationDTO> findImputationsCodeAllianceForCurrentMounth(@RequestParam String codeAlliance) {
+		return service.findImputationsByUserForCurrentMounth();
 	}
 
 	@RequestMapping(value = "/imputations/{id}")
@@ -34,7 +44,7 @@ public class ImputationController {
 	}
 
 	@RequestMapping(value = "/imputations", method = RequestMethod.POST)
-	public Imputation create(@RequestBody Imputation imputationToSave) {
+	public ImputationDTO create(@RequestBody ImputationDTO imputationToSave) {
 		return service.create(imputationToSave);
 	}
 }

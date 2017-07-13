@@ -1,4 +1,4 @@
-package com.ssm.oab.web;
+package com.ssm.oab.gi.dao.entity;
 
 import java.io.Serializable;
 

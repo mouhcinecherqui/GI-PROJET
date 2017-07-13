@@ -1,6 +1,9 @@
-package com.ssm.oab.web;
+package com.ssm.oab.gi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ssm.oab.gi.dao.ProjetRepository;
+import com.ssm.oab.gi.dao.entity.Projet;
 
 @org.springframework.stereotype.Service
 public class ProjetService {

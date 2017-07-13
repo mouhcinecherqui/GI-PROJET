@@ -1,4 +1,4 @@
-package com.ssm.oab.web;
+package com.ssm.oab.gi.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ssm.oab.gi.dao.entity.Projet;
+import com.ssm.oab.gi.service.ProjetService;
 
 @RestController
 @RequestMapping(value = "/api")

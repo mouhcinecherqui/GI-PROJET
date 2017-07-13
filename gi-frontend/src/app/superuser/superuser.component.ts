@@ -1,4 +1,6 @@
+import {Domaine} from './Domaine';
 import {Projet} from './projet';
+import { Role } from './role';
 import {User} from './user';
 import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
@@ -13,6 +15,8 @@ import 'rxjs/add/operator/toPromise';
 export class SuperuserComponent implements OnInit {
   users: User[];
   projets: Projet[];
+  domaines: Domaine[];
+  roles: Role[];
   superuser = true;
   viewdetails = true;
   ifList = true;
@@ -21,13 +25,25 @@ export class SuperuserComponent implements OnInit {
   constructor(private http: Http) {}
   ngOnInit() {
     this.getUsers().then(users => this.users = users);
+    this.getRoles().then(roles => this.roles = roles);
     this.getProjets().then(projets => this.projets = projets);
+    this.getDomaines().then(domaines => this.domaines = domaines);
   }
 
+  getRoles(): Promise<Role[]> {
+    return this.http.get('/api/roles')
+      .toPromise()
+      .then(response => response.json() as Role[]);
+  }
   getUsers(): Promise<User[]> {
     return this.http.get('/api/users')
       .toPromise()
       .then(response => response.json() as User[]);
+  }
+  getDomaines(): Promise<Domaine[]> {
+    return this.http.get('/api/domaines')
+      .toPromise()
+      .then(response => response.json() as Domaine[]);
   }
   getProjets(): Promise<Projet[]> {
     return this.http.get('/api/projets')

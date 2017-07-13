@@ -24,13 +24,21 @@ public class Utilisateur implements Serializable {
 	@Column(name = "CODEALLIANCE")
 	private String codeAlliance;
 
+	@Column(name = "PASSWORD")
+	private String password;
+
+	@Column(name = "ROLE")
+	private String role;
+
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String firstName, String lastName, String codeAlliance) {
+	public Utilisateur(String firstName, String lastName, String codeAlliance, String password, String role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.codeAlliance = codeAlliance;
+		this.password = password;
+		this.role = role;
 	}
 
 	public String getFirstName() {
@@ -56,6 +64,21 @@ public class Utilisateur implements Serializable {
 	public void setCodeAlliance(String codeAlliance) {
 		this.codeAlliance = codeAlliance;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 }

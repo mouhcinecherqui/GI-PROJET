@@ -7,10 +7,13 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	
 
 	public Iterable<Utilisateur> getUsers() {
 		return userRepository.findAll();
 	}
+
 
 	public Utilisateur getUser(String codeAlliance) {
 		return userRepository.findOne(codeAlliance);

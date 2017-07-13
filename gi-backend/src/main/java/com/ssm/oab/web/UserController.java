@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,6 +19,19 @@ public class UserController {
 	public Iterable<Utilisateur> getUsers() {
 		return service.getUsers();
 	}
+	
+
+	@RequestMapping(value = "/authentication")
+	public Utilisateur authentication(@RequestParam(value = "codeAlliance") String codeAlliance,@RequestParam(value = "password") String password) {
+		Utilisateur user=service.getUser(codeAlliance);
+		if(password.equals(user.getPassword())){
+			return user;
+		}else{
+			return null;
+		}
+		
+	}
+	
 
 	@RequestMapping(value = "/users/{codeAlliance}")
 	public Utilisateur getUser(@PathVariable(value = "codeAlliance") String codeAlliance) {

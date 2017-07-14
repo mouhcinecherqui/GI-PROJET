@@ -71,46 +71,50 @@
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="container" class="col-xs-4">
-					<form>
+					<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input id="first name"
-								type="text" class="form-control" name="firstname"
-								placeholder="firstname">
+								class="glyphicon glyphicon-user"></i></span> <input
+								class="form-control" type="text" formControlName="firstname"
+								name="firstname" placeholder="firstname">
 						</div>
+						<div *ngIf="formErrors.firstname" class="alert alert-danger">{{
+							formErrors.firstname }}</div>
+
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input id="lastname"
-								type="text" class="form-control" name="lastname"
+								class="glyphicon glyphicon-user"></i></span> <input type="text"
+								class="form-control" formControlName="lastname" name="lastname"
 								placeholder="lastname">
 						</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input id="password"
-								type="password" class="form-control" name="password"
+								class="glyphicon glyphicon-lock"></i></span> <input type="password"
+								class="form-control" formControlName="password" name="password"
 								placeholder="Password">
 						</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-credit-card"></i></span> <input
-								id="Code Alliance" type="text" class="form-control"
-								name="Code Alliance" placeholder="Code Alliance">
+								class="glyphicon glyphicon-credit-card"></i></span> <input type="text"
+								class="form-control" formControlName="codeAlliance"
+								name="CodeAlliance" placeholder="Code Alliance">
 						</div>
 						<br> <br>
 						<div class=" form-group">
-							<select name="Role" class="form-control">
+							<select style="text-align: center" name="role"
+								class="form-control" formControlName="role">
 								<option></option>
 								<option *ngFor="let role of roles">{{role.role}}</option>
 							</select>
 						</div>
 						<br>
 						<div class=" form-group">
-							<select style="text-align: center;" name="Domaine"
-								class="form-control">
+							<select style="text-align: center;" class="form-control"
+								name="domaine" formControlName="domaine">
 								<option>ALL</option>
 								<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
 							</select>
@@ -120,14 +124,15 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-								type="email" class="form-control" name="email"
-								placeholder="email">
+								type="email" class="form-control" formControlName="email"
+								name="email" placeholder="email">
 						</div>
 
 						<br> <br>
 
 						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
+							routerLinkActive="active-link" class="btn btn-success"
+							value="submit">Save</button>
 						<button type="reset" class="btn btn-default">Reset</button>
 					</form>
 

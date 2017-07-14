@@ -1,8 +1,9 @@
 import {Domaine} from './Domaine';
 import {Projet} from './projet';
-import { Role } from './role';
+import {Role} from './role';
 import {User} from './user';
 import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -13,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./superuser.component.css']
 })
 export class SuperuserComponent implements OnInit {
+  form;
   users: User[];
   projets: Projet[];
   domaines: Domaine[];
@@ -28,8 +30,45 @@ export class SuperuserComponent implements OnInit {
     this.getRoles().then(roles => this.roles = roles);
     this.getProjets().then(projets => this.projets = projets);
     this.getDomaines().then(domaines => this.domaines = domaines);
-  }
+    this.form = new FormGroup({
+      firstname: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(12),
 
+
+      ])),
+      lastname: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(12),
+
+
+      ])),
+      codeAlliance: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(8),
+
+
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(14),
+
+
+      ])),
+      email: new FormControl(''),
+      domaine: new FormControl(''),
+      role: new FormControl('')
+
+    }
+    );
+  }
+  onSubmit = function(user) {
+    console.log(user);
+  };
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')
       .toPromise()

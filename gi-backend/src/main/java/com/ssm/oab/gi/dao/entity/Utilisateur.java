@@ -29,16 +29,20 @@ public class Utilisateur implements Serializable {
 
 	@Column(name = "ROLE")
 	private String role;
+	
+	@Column(name = "DMN")
+	private String dmn;
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String firstName, String lastName, String codeAlliance, String password, String role) {
+	public Utilisateur(String firstName, String lastName, String codeAlliance, String password, String role, String dmn) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.codeAlliance = codeAlliance;
 		this.password = password;
 		this.role = role;
+		this.dmn = dmn;
 	}
 
 	public String getFirstName() {
@@ -79,6 +83,14 @@ public class Utilisateur implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getDmn() {
+		return dmn;
+	}
+
+	public void setDmn(String dmn) {
+		this.dmn = dmn;
 	}
 
 }

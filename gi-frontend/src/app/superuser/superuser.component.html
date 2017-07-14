@@ -6,7 +6,7 @@
 				<select style="text-align: center;" name="Domaine"
 					class="form-control">
 					<option>ALL</option>
-					<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
+					<option *ngFor="let user of users">{{user.dmn}}</option>
 				</select>
 
 			</div>
@@ -79,8 +79,8 @@
 								class="form-control" type="text" formControlName="firstname"
 								name="firstname" placeholder="firstname">
 						</div>
-						<div *ngIf="formErrors.firstname" class="alert alert-danger">{{
-							formErrors.firstname }}</div>
+ 						<div *ngIf="formErrors.firstname" class="alert alert-danger">{{ 
+						formErrors.firstname }}</div>
 
 						<br> <br>
 						<div class="input-group">
@@ -89,6 +89,8 @@
 								class="form-control" formControlName="lastname" name="lastname"
 								placeholder="lastname">
 						</div>
+						 						<div *ngIf="formErrors.lastname" class="alert alert-danger">{{ 
+						formErrors.lastname }}</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -132,7 +134,7 @@
 
 						<button type="submit" routerLink="/superuser"
 							routerLinkActive="active-link" class="btn btn-success"
-							value="submit">Save</button>
+							value="submit" [disabled]="!form.valid">Save</button>
 						<button type="reset" class="btn btn-default">Reset</button>
 					</form>
 

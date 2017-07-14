@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `gidb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `gidb`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win32 (AMD64)
 --
 -- Host: localhost    Database: gidb
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,8 +27,7 @@ DROP TABLE IF EXISTS `domaine`;
 CREATE TABLE `domaine` (
   `DMN` varchar(45) NOT NULL,
   `NOMDOMAINE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`DMN`),
-  UNIQUE KEY `DMN_UNIQUE` (`DMN`)
+  PRIMARY KEY (`DMN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,10 +132,16 @@ CREATE TABLE `utilisateur` (
   `LASTNAME` varchar(45) DEFAULT NULL,
   `CODEALLIANCE` varchar(45) NOT NULL,
   `PASSWORD` varchar(45) DEFAULT NULL,
+  `EMAIL` varchar(45) DEFAULT NULL,
   `ROLE` varchar(45) DEFAULT NULL,
+  `DMN` varchar(45) NOT NULL,
   PRIMARY KEY (`CODEALLIANCE`),
   UNIQUE KEY `CODEALLIANCE_UNIQUE` (`CODEALLIANCE`),
-  UNIQUE KEY `PASSWORD_UNIQUE` (`PASSWORD`)
+  UNIQUE KEY `PASSWORD_UNIQUE` (`PASSWORD`),
+  KEY `DMN` (`DMN`),
+  KEY `ROLE` (`ROLE`),
+  CONSTRAINT `DMN` FOREIGN KEY (`DMN`) REFERENCES `domaine` (`DMN`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ROLE` FOREIGN KEY (`ROLE`) REFERENCES `role` (`ROLE`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,17 +151,9 @@ CREATE TABLE `utilisateur` (
 
 LOCK TABLES `utilisateur` WRITE;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` VALUES ('Mouhcine','Cherqui','abcd1234',NULL,NULL),('prenom','nom','jewi9540',NULL,NULL),('marouan','rais','rhye6874',NULL,NULL);
+INSERT INTO `utilisateur` VALUES ('Mouhcine','Cherqui','abcd1234','mimi1234','mouhcinecherqui@gmail.com','role1','dom1'),('marwan ','rais','azer1234','marwan1234','marwan.rais@gmail.com','role2','dom2'),('badr','amri','efgh5678','badr1234','badramri@gmail.com','role1','dom1');
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'gidb'
---
-
---
--- Dumping routines for database 'gidb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -167,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-13 23:04:54
+-- Dump completed on 2017-07-14 18:18:01

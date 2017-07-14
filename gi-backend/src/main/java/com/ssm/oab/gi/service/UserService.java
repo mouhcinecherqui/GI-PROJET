@@ -21,6 +21,9 @@ public class UserService {
 	public Utilisateur getUser(String codeAlliance) {
 		return userRepository.findOne(codeAlliance);
 	}
+	public Utilisateur getdmn(String dmn) {
+		return userRepository.findOne(dmn);
+	}
 
 	public Utilisateur create(Utilisateur utilisateurToSave) {
 		userRepository.save(utilisateurToSave);

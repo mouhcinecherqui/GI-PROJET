@@ -14,6 +14,38 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./superuser.component.css']
 })
 export class SuperuserComponent implements OnInit {
+  formErrors = {
+    'firstname': '',
+    'lastname': '',
+    'password': '',
+    'email': '',
+    'codeAlliance': '',
+    'role': '',
+    'domaine': ''
+  };
+  validationMessages = {
+    'firstname': {
+      'required': 'firstname is required.'
+    },
+    'lastname': {
+      'required': 'lastname is required.'
+    },
+    'password': {
+      'required': 'password is required.'
+    },
+    'email': {
+      'required': 'email is required.'
+    },
+    'codeAlliance': {
+      'required': 'codeAlliance is required.'
+    },
+    'role': {
+      'required': 'role is required.'
+    },
+    'domaine': {
+      'required': 'domaine is required.'
+    }
+  };
   form;
   users: User[];
   projets: Projet[];
@@ -47,8 +79,8 @@ export class SuperuserComponent implements OnInit {
       ])),
       codeAlliance: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(8),
+
+        Validators.pattern('[a-z 1-9]{8}')
 
 
       ])),
@@ -66,6 +98,8 @@ export class SuperuserComponent implements OnInit {
     }
     );
   }
+
+
   onSubmit = function(user) {
     console.log(user);
   };
@@ -73,6 +107,11 @@ export class SuperuserComponent implements OnInit {
     return this.http.get('/api/roles')
       .toPromise()
       .then(response => response.json() as Role[]);
+  }
+  getdmn(): Promise<User[]> {
+    return this.http.get('/api/users/{dmn}')
+      .toPromise()
+      .then(response => response.json() as User[]);
   }
   getUsers(): Promise<User[]> {
     return this.http.get('/api/users')

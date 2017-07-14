@@ -35,7 +35,10 @@ public class UserController {
 		
 	}
 	
-
+	@RequestMapping(value = "/users/{dmn}")
+	public Utilisateur getdmn(@PathVariable(value = "dmn") String dmn) {
+		return service.getdmn(dmn);
+	}
 	@RequestMapping(value = "/users/{codeAlliance}")
 	public Utilisateur getUser(@PathVariable(value = "codeAlliance") String codeAlliance) {
 		return service.getUser(codeAlliance);

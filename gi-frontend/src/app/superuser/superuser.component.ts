@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/debounceTime';
 
 
 @Component({
@@ -46,6 +47,7 @@ export class SuperuserComponent implements OnInit {
       'required': 'domaine is required.'
     }
   };
+  searchKey: string;
   form;
   users: User[];
   projets: Projet[];
@@ -56,9 +58,23 @@ export class SuperuserComponent implements OnInit {
   ifList = true;
   ifCreate = false;
   ifAdmin = false;
+  public search = new FormControl();
+
   constructor(private http: Http) {}
+
+  onChange(dmn: string) {
+    this.getUsersByDomaine(dmn).then(users => this.users = users);
+  }
+
   ngOnInit() {
-    this.getUsers().then(users => this.users = users);
+    this.search
+      .valueChanges
+      .debounceTime(200)
+      .subscribe(term => {
+        this.searchKey = term;
+        console.log(term);
+      });
+    this.getUsersByDomaine('').then(users => this.users = users);
     this.getRoles().then(roles => this.roles = roles);
     this.getProjets().then(projets => this.projets = projets);
     this.getDomaines().then(domaines => this.domaines = domaines);
@@ -108,16 +124,16 @@ export class SuperuserComponent implements OnInit {
       .toPromise()
       .then(response => response.json() as Role[]);
   }
-  getdmn(): Promise<User[]> {
-    return this.http.get('/api/users/{dmn}')
+  getUsersByDomaine(dmn: string): Promise<User[]> {
+    return this.http.get('/api/users?dmn=' + dmn)
       .toPromise()
       .then(response => response.json() as User[]);
   }
-  getUsers(): Promise<User[]> {
-    return this.http.get('/api/users')
-      .toPromise()
-      .then(response => response.json() as User[]);
-  }
+  //  getUsers(): Promise<User[]> {
+  //    return this.http.get('/api/users')
+  //      .toPromise()
+  //      .then(response => response.json() as User[]);
+  //  }
   getDomaines(): Promise<Domaine[]> {
     return this.http.get('/api/domaines')
       .toPromise()

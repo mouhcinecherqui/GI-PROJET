@@ -12,6 +12,7 @@ import { SimpleuserComponent } from './simpleuser/simpleuser.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AdminComponent } from './admin/admin.component';
 import { ForgetpwdComponent } from './forgetpwd/forgetpwd.component';
+import { MyFilterPipe } from './superuser/MyFilterPiple';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     AuthenticationComponent,
     AdminComponent,
     ForgetpwdComponent,
+    MyFilterPipe,
   ],
   imports: [
     BrowserModule,

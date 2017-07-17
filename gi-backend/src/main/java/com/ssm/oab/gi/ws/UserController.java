@@ -20,7 +20,9 @@ public class UserController {
 
 	@RequestMapping(value = "/users")
 	public Iterable<Utilisateur> getUsers(@RequestParam(value = "dmn", required = false) String dmn) {
-		if (dmn != null && !dmn.isEmpty()) {
+		if (dmn != null && "ALL".equals(dmn)) {
+			return service.getUsers();
+		} else if (dmn != null && !dmn.isEmpty()) {
 			return service.getUsersByDomaine(dmn);
 		} else {
 			return service.getUsers();

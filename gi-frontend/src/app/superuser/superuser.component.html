@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="col-xs-5"></div>
 			<div class="col-xs-2">
-				<select style="text-align: center;" name="Domaine"
-					class="form-control">
+				<select style="text-align: center;" #select
+					(change)="onChange(select.value)" class="form-control">
 					<option>ALL</option>
-					<option *ngFor="let user of users">{{user.dmn}}</option>
+					<option *ngFor="let domaine of domaines" [value]="domaine.dmn">{{domaine.dmn}}</option>
 				</select>
 
 			</div>
@@ -37,9 +37,10 @@
 				<!-- 			<h2>Liste de collaborateurs</h2> -->
 				<div class="input-group">
 					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-search"></i></span> <input id="search"
+						class="glyphicon glyphicon-search"></i></span><input [formControl]="search"
 						type="text" class="form-control" name="search"
-						placeholder="Search">
+						placeholder="Search" [value]="searchKey">
+
 				</div>
 				<table class="table table-striped">
 					<thead>
@@ -50,7 +51,8 @@
 							<th>view details</th>
 						</tr>
 					</thead>
-					<tbody *ngFor="let user of users">
+					<tbody
+						*ngFor='let user of users | myfilter: searchKey'>
 
 						<tr>
 							<td>{{user.firstName}}</td>
@@ -79,8 +81,8 @@
 								class="form-control" type="text" formControlName="firstname"
 								name="firstname" placeholder="firstname">
 						</div>
- 						<div *ngIf="formErrors.firstname" class="alert alert-danger">{{ 
-						formErrors.firstname }}</div>
+						<div *ngIf="formErrors.firstname" class="alert alert-danger">{{
+							formErrors.firstname }}</div>
 
 						<br> <br>
 						<div class="input-group">
@@ -89,8 +91,8 @@
 								class="form-control" formControlName="lastname" name="lastname"
 								placeholder="lastname">
 						</div>
-						 						<div *ngIf="formErrors.lastname" class="alert alert-danger">{{ 
-						formErrors.lastname }}</div>
+						<div *ngIf="formErrors.lastname" class="alert alert-danger">{{
+							formErrors.lastname }}</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i

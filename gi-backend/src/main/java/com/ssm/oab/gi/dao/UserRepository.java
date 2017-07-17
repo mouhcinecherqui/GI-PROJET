@@ -8,5 +8,5 @@ import com.ssm.oab.gi.dao.entity.Utilisateur;
 @Repository
 public interface UserRepository extends CrudRepository<Utilisateur, String>{
 	
-
+	public Iterable<Utilisateur> findAllByDmn(String dmn);
 }

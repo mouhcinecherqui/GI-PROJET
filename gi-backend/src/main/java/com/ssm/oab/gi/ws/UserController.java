@@ -19,26 +19,26 @@ public class UserController {
 	private UserService service;
 
 	@RequestMapping(value = "/users")
-	public Iterable<Utilisateur> getUsers() {
-		return service.getUsers();
+	public Iterable<Utilisateur> getUsers(@RequestParam(value = "dmn", required = false) String dmn) {
+		if (dmn != null && !dmn.isEmpty()) {
+			return service.getUsersByDomaine(dmn);
+		} else {
+			return service.getUsers();
+		}
 	}
-	
 
 	@RequestMapping(value = "/authentication")
-	public Utilisateur authentication(@RequestParam(value = "codeAlliance") String codeAlliance,@RequestParam(value = "password") String password) {
-		Utilisateur user=service.getUser(codeAlliance);
-		if(password.equals(user.getPassword())){
+	public Utilisateur authentication(@RequestParam(value = "codeAlliance") String codeAlliance,
+			@RequestParam(value = "password") String password) {
+		Utilisateur user = service.getUser(codeAlliance);
+		if (password.equals(user.getPassword())) {
 			return user;
-		}else{
+		} else {
 			return null;
 		}
-		
+
 	}
-	
-	@RequestMapping(value = "/users/{dmn}")
-	public Utilisateur getdmn(@PathVariable(value = "dmn") String dmn) {
-		return service.getdmn(dmn);
-	}
+
 	@RequestMapping(value = "/users/{codeAlliance}")
 	public Utilisateur getUser(@PathVariable(value = "codeAlliance") String codeAlliance) {
 		return service.getUser(codeAlliance);

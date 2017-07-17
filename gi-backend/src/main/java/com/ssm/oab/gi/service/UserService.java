@@ -10,19 +10,17 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	
 
 	public Iterable<Utilisateur> getUsers() {
 		return userRepository.findAll();
 	}
 
-
 	public Utilisateur getUser(String codeAlliance) {
 		return userRepository.findOne(codeAlliance);
 	}
-	public Utilisateur getdmn(String dmn) {
-		return userRepository.findOne(dmn);
+
+	public Iterable<Utilisateur> getUsersByDomaine(String dmn) {
+		return userRepository.findAllByDmn(dmn);
 	}
 
 	public Utilisateur create(Utilisateur utilisateurToSave) {

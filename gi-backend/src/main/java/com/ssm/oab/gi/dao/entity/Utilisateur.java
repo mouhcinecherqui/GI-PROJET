@@ -32,6 +32,9 @@ public class Utilisateur implements Serializable {
 	
 	@Column(name = "DMN")
 	private String dmn;
+	
+	@Column(name = "EMAIL")
+	private String email;
 
 	public Utilisateur() {
 	}
@@ -91,6 +94,14 @@ public class Utilisateur implements Serializable {
 
 	public void setDmn(String dmn) {
 		this.dmn = dmn;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

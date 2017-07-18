@@ -19,7 +19,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'superuser', component: SuperuserComponent }
-  , { path: '#/', redirectTo: '#/superuser', pathMatch: 'full' },
+  , { path: '#/', redirectTo: '#/superuser', pathMatch: 'prefix' },
   { path: 'simpleuser', component: SimpleuserComponent }
   , { path: '#/', redirectTo: '#/simpleuser', pathMatch: 'full' },
   { path: 'creation', component: NewuserComponent }

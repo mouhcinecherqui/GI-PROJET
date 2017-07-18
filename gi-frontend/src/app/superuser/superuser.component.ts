@@ -79,14 +79,14 @@ export class SuperuserComponent implements OnInit {
     this.getProjets().then(projets => this.projets = projets);
     this.getDomaines().then(domaines => this.domaines = domaines);
     this.form = new FormGroup({
-      firstname: new FormControl('', Validators.compose([
+      firstName: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
 
 
       ])),
-      lastname: new FormControl('', Validators.compose([
+      lastName: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
@@ -108,7 +108,7 @@ export class SuperuserComponent implements OnInit {
 
       ])),
       email: new FormControl(''),
-      domaine: new FormControl(''),
+      dmn: new FormControl(''),
       role: new FormControl('')
 
     }
@@ -118,12 +118,15 @@ export class SuperuserComponent implements OnInit {
 
   onSubmit = function(user) {
     console.log(user);
+    this.http.post('/api/users', user).subscribe(response => response.json() as User[]
+    );
   };
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')
       .toPromise()
       .then(response => response.json() as Role[]);
   }
+
   getUsersByDomaine(dmn: string): Promise<User[]> {
     return this.http.get('/api/users?dmn=' + dmn)
       .toPromise()
@@ -159,7 +162,7 @@ export class SuperuserComponent implements OnInit {
     this.ifCreate = false;
     this.ifList = true;
     this.ifAdmin = false;
-
+    this.ngOnInit();
   }
 
   showAdmin() {

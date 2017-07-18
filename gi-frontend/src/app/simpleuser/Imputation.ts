@@ -1,8 +1,8 @@
 export class Imputation {
   codeprojet: string;
   codeAlliance: string;
-  nombreheure: string;
-  jour: string;
+  date: number;
+  tempsps: number;
   id: string;
 
 }

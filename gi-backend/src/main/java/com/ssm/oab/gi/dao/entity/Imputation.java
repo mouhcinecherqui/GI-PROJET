@@ -17,8 +17,8 @@ public class Imputation implements Serializable {
 	@Column(name = "DATE")
 	private Calendar date;
 
-	@Column(name = "TEMPS PASSEE")
-	private float tempsps;
+	@Column(name = "Jour")
+	private float jour;
 
 	@Column(name = "CODEPROJET")
 	private String codeProjet;
@@ -64,12 +64,12 @@ public class Imputation implements Serializable {
 		this.codeAlliance = codeAlliance;
 	}
 
-	public float getTempsps() {
-		return tempsps;
+	public float getJour() {
+		return jour;
 	}
 
-	public void setTempsps(float tempsps) {
-		this.tempsps = tempsps;
+	public void setJour(float jour) {
+		this.jour = jour;
 	}
 
 

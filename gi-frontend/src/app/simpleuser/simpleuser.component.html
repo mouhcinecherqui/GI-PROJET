@@ -1,323 +1,943 @@
+
 <body>
-	<div class="row">
-
-		<div class="col-xs-1"></div>
-		<div class="col-xs-3">
-
-			<h2>ALL Details</h2>
-			<br>
-			<p>
-				<label>firstname: Mouhcine</label>
-			</p>
-			<p>
-				<label>lastname: Cherqui</label>
-			</p>
-			<p>
-				<label>Code Alliance: ecad3215</label>
-			</p>
-			<p>
-				<label>email: m.cherqui@sofrecom.ma</label>
-			</p>
-
-		</div>
-		<div class="col-xs-7"></div>
-		<div class="col-xs-1">
-			<button routerLink="/logout" routerLinkActive="active-link"
-				type="submit" class="btn btn-primary btn-sm center-block"
-				(click)="logoutUser()">logout</button>
-		</div>
-	</div>
-	<div class="col-xs-5"></div>
-	<div class="col-xs-3">
-		<select style="text-align: center; font-weight: bold;"><option>mois</option>
-			<option>janvier 2017</option>
-			<option>fevrier 2017</option>
-			<option>mars 2017</option>
-			<option>avril 2017</option>
-			<option>mai 2017</option>
-			<option>juin 2017</option>
-			<option>juillet 2017</option>
-			<option>aout 2017</option>
-			<option>septembre 2017</option>
-			<option>octobre 2017</option>
-			<option>novembre 2017</option>
-			<option>decembre 2017</option></select>
-	</div>
-	<div class="col-xs-4"></div>
-	<br>
-	<br>
-	<div class="inner">
 		<div class="row">
-			<div class="col-xs-12">
 
-				<table class="table-bordered table-striped">
-					<tbody>
-						<tr style="text-align: center;">
-							<td></td>
-							<td>Jeu</td>
-							<td>Ven</td>
-							<td>Sam</td>
-							<td>Dima</td>
-							<td>Lun</td>
-							<td>Mar</td>
-							<td>Mer</td>
-							<td>Jeu</td>
-							<td>Ven</td>
-							<td>Sam</td>
-							<td>Dima</td>
-							<td>Lun</td>
-							<td>Mar</td>
-							<td>Mer</td>
-							<td>Jeu</td>
-							<td>Ven</td>
-							<td>Sam</td>
-							<td>Dima</td>
-							<td>Lun</td>
-							<td>Mar</td>
-							<td>Mer</td>
-							<td>Jeu</td>
-							<td>Ven</td>
-							<td>Sam</td>
-							<td>Dima</td>
-							<td>Lun</td>
-							<td>Mar</td>
-							<td>Mer</td>
-							<td>Jeu</td>
-							<td>Ven</td>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-3">
 
-						</tr>
-						<tr style="text-align: center;">
-							<td>Jours</td>
-							<td>1</td>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>6</td>
-							<td>7</td>
-							<td>8</td>
-							<td>9</td>
-							<td>10</td>
-							<td>11</td>
-							<td>12</td>
-							<td>13</td>
-							<td>14</td>
-							<td>15</td>
-							<td>16</td>
-							<td>17</td>
-							<td>18</td>
-							<td>19</td>
-							<td>20</td>
-							<td>21</td>
-							<td>22</td>
-							<td>23</td>
-							<td>24</td>
-							<td>25</td>
-							<td>26</td>
-							<td>27</td>
-							<td>28</td>
-							<td>29</td>
-							<td>30</td>
-						</tr>
-						<tr>
-							<td><select
-								style="width: 85px; font-size: 11px; font-weight: bold;"><option>Code
-										Projet</option>
-									<option *ngFor=" let projet of projets">{{projet.codeprojet}}
-									</option></select></td>
-
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option
-										*ngFor=" let imputation of imputations">{{imputations.tempsps}}</option>
-
-							</select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-							<td><select
-								style="width: 50px; font-size: 10px; font-weight: bold;"><option>0</option>
-									<option>0.25</option>
-									<option>0.50</option>
-									<option>0.75</option>
-									<option>1.00</option></select></td>
-						</tr>
-
-					</tbody>
-				</table>
+				<h2>ALL Details</h2>
 				<br>
+				<p>
+					<label>firstname: Mouhcine</label>
+				</p>
+				<p>
+					<label>lastname: Cherqui</label>
+				</p>
+				<p>
+					<label>Code Alliance: ecad3215</label>
+				</p>
+				<p>
+					<label>email: m.cherqui@sofrecom.ma</label>
+				</p>
+
+			</div>
+			<div class="col-xs-7"></div>
+			<div class="col-xs-1">
+				<button routerLink="/logout" routerLinkActive="active-link"
+					type="submit" class="btn btn-primary btn-sm center-block"
+					(click)="logoutUser()">logout</button>
 			</div>
 		</div>
-	</div>
-	<div class="col-xs-1"></div>
-	<div>
-		<button type="button" class="btn btn-success" routerLink="/superuser">Save</button>
-		<button type="button" class="btn">Add</button>
-	</div>
+		<div class="col-xs-5"></div>
+		<div class="col-xs-3">
+			<select style="text-align: center; font-weight: bold;"><option>mois</option>
+				<option>janvier 2017</option>
+				<option>fevrier 2017</option>
+				<option>mars 2017</option>
+				<option>avril 2017</option>
+				<option>mai 2017</option>
+				<option>juin 2017</option>
+				<option>juillet 2017</option>
+				<option>aout 2017</option>
+				<option>septembre 2017</option>
+				<option>octobre 2017</option>
+				<option>novembre 2017</option>
+				<option>decembre 2017</option></select>
+		</div>
+		<div class="col-xs-4"></div>
+		<br> <br>
+			<div class="inner" >
+		
+				<div class="row">
+				
+					<div class="col-xs-12">
 
+						<table class="table-bordered table-striped"
+							style="width: 1000px; margin: auto;" 
+							(ngSubmit)="onSub(form.value)">
+
+							<tbody>
+								<form>
+								<div [formGroup]="form">
+								<tr style="text-align: center; width: 1000px;">
+									<td></td>
+									<td>Jeu</td>
+									<td>Ven</td>
+									<td>Sam</td>
+									<td>Dim</td>
+									<td>Lun</td>
+									<td>Mar</td>
+									<td>Mer</td>
+									<td>Jeu</td>
+									<td>Ven</td>
+									<td>Sam</td>
+									<td>Dim</td>
+									<td>Lun</td>
+									<td>Mar</td>
+									<td>Mer</td>
+									<td>Jeu</td>
+									<td>Ven</td>
+									<td>Sam</td>
+									<td>Dim</td>
+									<td>Lun</td>
+									<td>Mar</td>
+									<td>Mer</td>
+									<td>Jeu</td>
+									<td>Ven</td>
+									<td>Sam</td>
+									<td>Dim</td>
+									<td>Lun</td>
+									<td>Mar</td>
+									<td>Mer</td>
+									<td>Jeu</td>
+									<td>Ven</td>
+
+								</tr>
+								<tr style="text-align: center;">
+									<td>Jours</td>
+									<td>1</td>
+									<td>2</td>
+									<td>3</td>
+									<td>4</td>
+									<td>5</td>
+									<td>6</td>
+									<td>7</td>
+									<td>8</td>
+									<td>9</td>
+									<td>10</td>
+									<td>11</td>
+									<td>12</td>
+									<td>13</td>
+									<td>14</td>
+									<td>15</td>
+									<td>16</td>
+									<td>17</td>
+									<td>18</td>
+									<td>19</td>
+									<td>20</td>
+									<td>21</td>
+									<td>22</td>
+									<td>23</td>
+									<td>24</td>
+									<td>25</td>
+									<td>26</td>
+									<td>27</td>
+									<td>28</td>
+									<td>29</td>
+									<td>30</td>
+								</tr>
+
+								<br>
+								<tr id="imp">
+									<td><select
+										style="width: 200px; font-size: 13px; font-weight: bold;"
+										class="form-control" formControlName="codeprojet"><option>Code
+												Projet</option>
+											<option *ngFor=" let projet of projets">{{projet.codeprojet}}
+											</option></select></td>
+
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+								</tr>
+								<br>
+								<tr id="imp">
+									<td><select
+										style="width: 200px; font-size: 13px; font-weight: bold;"><option>Code
+												Projet</option>
+											<option *ngFor=" let projet of projets">{{projet.codeprojet}}
+											</option></select></td>
+
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+								</tr>
+								<br>
+								<tr id="imp">
+									<td><select
+										style="width: 200px; font-size: 13px; font-weight: bold;"><option>Code
+												Projet</option>
+											<option *ngFor=" let projet of projets">{{projet.codeprojet}}
+											</option></select></td>
+
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+								</tr>
+								<br>
+								<tr id="imp">
+									<td><select
+										style="width: 200px; font-size: 13px; font-weight: bold;"><option>Code
+												Projet</option>
+											<option *ngFor=" let projet of projets">{{projet.codeprojet}}
+											</option></select></td>
+
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+								</tr>
+								<br>
+								<tr id="imp">
+									<td><select
+										style="width: 200px; font-size: 13px; font-weight: bold;"><option>Code
+												Projet</option>
+											<option *ngFor=" let projet of projets">{{projet.codeprojet}}
+											</option></select></td>
+
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+									<td><select
+										style="width: 70px; font-size: 12px; font-weight: bold;"><option
+												*ngFor=" let imputation of imputations">{{imputation.jour}}</option>
+
+									</select></td>
+								</tr>
+								<br>
+								</div>
+</form>
+							</tbody>
+						</table>
+
+						<br>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-xs-1"></div>
+			<div>
+				<button type="submit" value="submit" class="btn btn-success">Save</button>
+				<button type="button" class="btn" (click)="add()">Add</button>
+			</div>
 
 </body>

@@ -7,7 +7,6 @@ import {PipeTransform, Pipe} from '@angular/core';
 
 export class MyFilterPipe implements PipeTransform {
   transform(users: any[], filter: string): any {
-    console.log('mrs ' + filter);
     if (!users || !filter) {
       return users;
     }

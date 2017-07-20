@@ -1,6 +1,7 @@
 package com.ssm.oab.gi.service.dto;
 
 import java.util.Calendar;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,6 +16,10 @@ public class ImputationDTO {
 	private String codeProjet;
 
 	private String codeAlliance;
+
+	private List<String> joursDeLaSemaine;
+
+	private int joursDuMois;
 
 	public Calendar getDate() {
 		return date;
@@ -56,4 +61,19 @@ public class ImputationDTO {
 		this.id = id;
 	}
 
+	public List<String> getJoursDeLaSemaine() {
+		return joursDeLaSemaine;
+	}
+
+	public void setJoursDeLaSemaine(List<String> joursDeLaSemaine) {
+		this.joursDeLaSemaine = joursDeLaSemaine;
+	}
+
+	public int getJoursDuMois() {
+		return joursDuMois;
+	}
+
+	public void setJoursDuMois(int joursDuMois) {
+		this.joursDuMois = joursDuMois;
+	}
 }

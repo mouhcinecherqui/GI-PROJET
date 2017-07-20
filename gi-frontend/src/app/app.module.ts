@@ -1,35 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
-import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-import { AppComponent } from './app.component';
-import { SuperuserComponent} from './superuser/superuser.component';
-import { NewuserComponent } from './newuser/newuser.component';
-import { ListwithdetComponent } from './listwithdet/listwithdet.component';
-import { SimpleuserComponent } from './simpleuser/simpleuser.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
-import { AdminComponent } from './admin/admin.component';
-import { ForgetpwdComponent } from './forgetpwd/forgetpwd.component';
-import { MyFilterPipe } from './superuser/MyFilterPiple';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule, JsonpModule} from '@angular/http';
+import {RouterModule, Routes} from '@angular/router';
+import {Ng2FilterPipeModule} from 'ng2-filter-pipe';
+import {AppComponent} from './app.component';
+import {SuperuserComponent} from './superuser/superuser.component';
+import {NewuserComponent} from './newuser/newuser.component';
+import {ListwithdetComponent} from './listwithdet/listwithdet.component';
+import {SimpleuserComponent} from './simpleuser/simpleuser.component';
+import {AuthenticationComponent} from './authentication/authentication.component';
+import {AdminComponent} from './admin/admin.component';
+import {ForgetpwdComponent} from './forgetpwd/forgetpwd.component';
+import {MyFilterPipe} from './superuser/MyFilterPiple';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DxPopupModule, DxButtonModule, DxTemplateModule} from 'devextreme-angular';
 
 
 
 const appRoutes: Routes = [
-  { path: 'superuser', component: SuperuserComponent }
-  , { path: '#/', redirectTo: '#/superuser', pathMatch: 'prefix' },
-  { path: 'simpleuser', component: SimpleuserComponent }
-  , { path: '#/', redirectTo: '#/simpleuser', pathMatch: 'full' },
-  { path: 'creation', component: NewuserComponent }
-  , { path: '#/', redirectTo: '#/creation', pathMatch: 'full' },
-  { path: 'logout', component: AuthenticationComponent }
-  , { path: '#/', redirectTo: '#/logout', pathMatch: 'full' },
-  { path: 'viewdetails', component: SimpleuserComponent }
-  , { path: '#/', redirectTo: '#/viewdetails', pathMatch: 'full' },
-  { path: 'forgetpwd', component: ForgetpwdComponent }
-  , { path: '#/', redirectTo: '#/forgetpwd', pathMatch: 'full' }
+  {path: 'superuser', component: SuperuserComponent}
+  , {path: '#/', redirectTo: '#/superuser', pathMatch: 'prefix'},
+  {path: 'simpleuser', component: SimpleuserComponent}
+  , {path: '#/', redirectTo: '#/simpleuser', pathMatch: 'full'},
+  {path: 'creation', component: NewuserComponent}
+  , {path: '#/', redirectTo: '#/creation', pathMatch: 'full'},
+  {path: 'logout', component: AuthenticationComponent}
+  , {path: '#/', redirectTo: '#/logout', pathMatch: 'full'},
+  {path: 'viewdetails', component: SimpleuserComponent}
+  , {path: '#/', redirectTo: '#/viewdetails', pathMatch: 'full'},
+  {path: 'forgetpwd', component: ForgetpwdComponent}
+  , {path: '#/', redirectTo: '#/forgetpwd', pathMatch: 'full'}
 ];
 
 
@@ -53,7 +54,9 @@ const appRoutes: Routes = [
     Ng2FilterPipeModule,
     NgbModule.forRoot(),
     JsonpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DxPopupModule,
+    DxButtonModule,
   ],
   exports: [
     RouterModule
@@ -62,4 +65,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {}

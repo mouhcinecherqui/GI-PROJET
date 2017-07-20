@@ -47,8 +47,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users/{codeAlliance}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable(value = "codeAlliance") String codeAlliance) {
+	public void delete(@PathVariable(value = "codeAlliance") String codeAlliance) throws InterruptedException {
 		service.delete(codeAlliance);
+		this.wait(5000);
 	}
 
 	@RequestMapping(value = "/users/{codeAlliance}", method = RequestMethod.PUT)

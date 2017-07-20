@@ -1,7 +1,7 @@
 import {Projet} from '../superuser/projet';
 import {Imputation} from './Imputation';
 import {Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
 import {Http} from '@angular/http';
 @Component({
   selector: 'app-simpleuser',
@@ -34,9 +34,9 @@ export class SimpleuserComponent implements OnInit {
       .toPromise()
       .then(response => response.json() as Imputation[]);
   }
-  onSub = function(Imputation) {
-    console.log(Imputation);
-//    this.http.post('/api/imputations', Imputation).subscribe(response => response.json() as Imputation[]
-//    );
+  onSub = function(im: Imputation) {
+    console.log("im " + im.codeprojet);
+    //    this.http.post('/api/imputations', Imputation).subscribe(response => response.json() as Imputation[]
+    //    );
   };
 }

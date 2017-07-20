@@ -33,13 +33,13 @@
 		<br>
 		<div *ngIf="ifList">
 			<div class="row"></div>
-			<div class="container" class="col-xs-5">
+			<div class="container" class="col-xs-6">
 				<!-- 			<h2>Liste de collaborateurs</h2> -->
 				<div class="input-group">
 					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-search"></i></span><input [formControl]="search"
-						type="text" class="form-control" name="search"
-						placeholder="Search" [value]="searchKey">
+						class="glyphicon glyphicon-search"></i></span><input
+						[formControl]="search" type="text" class="form-control"
+						name="search" placeholder="Search" [value]="searchKey">
 
 				</div>
 				<table class="table table-striped">
@@ -51,8 +51,7 @@
 							<th>view details</th>
 						</tr>
 					</thead>
-					<tbody
-						*ngFor='let user of users | myfilter: searchKey'>
+					<tbody *ngFor='let user of users | myfilter: searchKey'>
 
 						<tr>
 							<td>{{user.firstName}}</td>
@@ -62,10 +61,25 @@
 									<a routerLink="/viewdetails"
 										(click)="getDetails(user.codeAlliance)">view details</a>
 								</p></th>
+							<th><div id="popup">
+									<dx-button class="btn btn-info glyphicon glyphicon-pencil"
+										(click)="showInfo(user)"> </dx-button>
+
+
+								</div></th>
+							<th><i class="btn btn-danger glyphicon glyphicon-trash"
+								(click)="onDelete(user.codeAlliance)"></i></th>
+
 						</tr>
 					</tbody>
 				</table>
-
+				<dx-popup class="popup" [width]="300" [height]="250"
+					[showTitle]="true" title="Information" [dragEnabled]="false"
+					[closeOnOutsideClick]="true" [(visible)]="popupVisible">
+				<div>
+					<p>hi</p>
+				</div>
+				</dx-popup>
 			</div>
 			<router-outlet></router-outlet>
 		</div>

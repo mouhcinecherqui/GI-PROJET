@@ -2,6 +2,7 @@ package com.ssm.oab.gi.dao.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,6 @@ public class Imputation implements Serializable {
 		this.date = date;
 	}
 
-
 	public Long getId() {
 		return id;
 	}
@@ -71,7 +71,4 @@ public class Imputation implements Serializable {
 	public void setJour(float jour) {
 		this.jour = jour;
 	}
-
-
-
 }

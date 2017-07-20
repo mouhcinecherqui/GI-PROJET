@@ -58,6 +58,7 @@ export class SuperuserComponent implements OnInit {
   ifList = true;
   ifCreate = false;
   ifAdmin = false;
+  popupVisible = false;
   public search = new FormControl();
 
   constructor(private http: Http) {}
@@ -121,6 +122,9 @@ export class SuperuserComponent implements OnInit {
     this.http.post('/api/users', user).subscribe(response => response.json() as User[]
     );
   };
+   showInfo(user) {
+        this.popupVisible = true;
+    }
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')
       .toPromise()
@@ -148,6 +152,25 @@ export class SuperuserComponent implements OnInit {
       .then(response => response.json() as Projet[]);
   }
 
+
+  deleteUser(codeAlliance: string): Promise<void> {
+    console.log('ach w9e3 ' + codeAlliance);
+    return this.http.delete('/api/users/' + codeAlliance)
+      .toPromise()
+      .then(() => null).catch(this.handleError);
+  }
+
+  onDelete = function(codeAlliance: string) {
+    this.deleteUser(codeAlliance).then(() => null);
+    this.http.get('/api/users')
+      .toPromise()
+      .then(response => response.json() as User[]);
+  };
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
   showCreation() {
     this.ifCreate = true;
     this.ifList = false;

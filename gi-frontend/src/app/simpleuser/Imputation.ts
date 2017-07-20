@@ -4,5 +4,7 @@ export class Imputation {
   date: number;
   jour: number;
   id: string;
+  joursDeLaSemaine: string[];
+  joursDuMois: number;
 
 }

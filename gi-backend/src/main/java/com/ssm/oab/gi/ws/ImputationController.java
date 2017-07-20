@@ -23,7 +23,7 @@ public class ImputationController {
 		return service.getImputations();
 	}
 	@RequestMapping(value = "/imputations/mounth")
-	public Iterable<ImputationDTO> findImputationsCodeAllianceForCurrentMounth(@RequestParam String codeAlliance) {
+	public Iterable<ImputationDTO> findImputationsByCodeAllianceForCurrentMounth(@RequestParam String codeAlliance) {
 		return service.findImputationsByUserForCurrentMounth();
 	}
 

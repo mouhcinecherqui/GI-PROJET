@@ -1,7 +1,9 @@
 package com.ssm.oab.gi.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,32 @@ public class ImputationService {
 	private ImputationTransformer transformer = new ImputationTransformer();
 
 	public Iterable<ImputationDTO> getImputations() {
-		return transformer.toDto(imputationRepository.findAll());
+		Iterable<ImputationDTO> listeImputations = transformer.toDto(imputationRepository.findAll());
+
+		for (ImputationDTO dto : listeImputations) {
+			dto.setJoursDeLaSemaine(getJoursDeLaSemaine());
+			dto.setJoursDuMois(getJoursDuMois());
+		}
+		return listeImputations;
+	}
+
+	public List<String> getJoursDeLaSemaine() {
+		List<String> res = new ArrayList<>();
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		SimpleDateFormat fmt = new SimpleDateFormat("EEE");
+		// System.out.println(getJoursDuMois());
+		for (int i = 1; i <= getJoursDuMois(); i++) {
+			res.add(fmt.format(cal.getTime()));
+			cal.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		// System.out.println(res);
+		return res;
+	}
+
+	private int getJoursDuMois() {
+		return Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
 	public List<ImputationDTO> findImputationsByUserForCurrentMounth() {
@@ -56,7 +83,7 @@ public class ImputationService {
 
 	private List<ImputationDTO> getImputationsForCurrentMounth(Iterable<ImputationDTO> listImputationsDTO) {
 		List<ImputationDTO> listImputations = new ArrayList<>();
-		
+
 		Calendar currentCalendar = Calendar.getInstance();
 		int currentMonth = currentCalendar.get(Calendar.MONTH);
 

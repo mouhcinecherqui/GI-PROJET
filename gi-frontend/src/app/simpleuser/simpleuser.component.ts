@@ -1,5 +1,4 @@
 import {Projet} from '../superuser/projet';
-import {Imputation} from './Imputation';
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Http} from '@angular/http';
@@ -10,7 +9,7 @@ import {Http} from '@angular/http';
 })
 export class SimpleuserComponent implements OnInit {
   projets: Projet[];
-  imputations: Imputation[];
+  imputations: Imputations;
   form;
   constructor(private http: Http) {}
 
@@ -29,13 +28,13 @@ export class SimpleuserComponent implements OnInit {
       .toPromise()
       .then(response => response.json() as Projet[]);
   }
-  getImputations(): Promise<Imputation[]> {
-    return this.http.get('/api/imputations')
+  getImputations(): Promise<Imputations> {
+    return this.http.get('/api/imputations/mounth?codeAlliance=abcd1234&moisAnnee')
       .toPromise()
-      .then(response => response.json() as Imputation[]);
+      .then(response => response.json() as Imputations);
   }
-  onSub = function(im: Imputation) {
-    console.log("im " + im.codeprojet);
+  onSub = function(im: Imputations) {
+    //    console.log("im " + im.codeprojet);
     //    this.http.post('/api/imputations', Imputation).subscribe(response => response.json() as Imputation[]
     //    );
   };

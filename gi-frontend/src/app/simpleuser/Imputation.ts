@@ -1,10 +1,7 @@
 export class Imputation {
-  codeprojet: string;
-  codeAlliance: string;
-  date: number;
+  date: Date;
   jour: number;
-  id: string;
-  joursDeLaSemaine: string[];
-  joursDuMois: number;
-
+  id: number;
+  codeProjet: string;
+  codeAlliance: string;
 }

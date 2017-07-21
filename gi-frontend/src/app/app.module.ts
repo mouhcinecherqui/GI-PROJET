@@ -14,7 +14,8 @@ import {AdminComponent} from './admin/admin.component';
 import {ForgetpwdComponent} from './forgetpwd/forgetpwd.component';
 import {MyFilterPipe} from './superuser/MyFilterPiple';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DxPopupModule, DxButtonModule, DxTemplateModule} from 'devextreme-angular';
+
+
 
 
 
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     AdminComponent,
     ForgetpwdComponent,
     MyFilterPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -55,8 +57,6 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     JsonpModule,
     ReactiveFormsModule,
-    DxPopupModule,
-    DxButtonModule,
   ],
   exports: [
     RouterModule

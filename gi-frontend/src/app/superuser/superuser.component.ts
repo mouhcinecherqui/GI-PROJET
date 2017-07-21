@@ -2,12 +2,11 @@ import {Domaine} from './Domaine';
 import {Projet} from './projet';
 import {Role} from './role';
 import {User} from './user';
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormGroup, FormControl, Validators, NgForm} from '@angular/forms';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/debounceTime';
-
 
 @Component({
   selector: 'app-superuser',
@@ -16,19 +15,19 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class SuperuserComponent implements OnInit {
   formErrors = {
-    'firstname': '',
-    'lastname': '',
+    'firstName': '',
+    'lastName': '',
     'password': '',
     'email': '',
     'codeAlliance': '',
     'role': '',
-    'domaine': ''
+    'dmn': ''
   };
   validationMessages = {
-    'firstname': {
+    'firstName': {
       'required': 'firstname is required.'
     },
-    'lastname': {
+    'lastName': {
       'required': 'lastname is required.'
     },
     'password': {
@@ -43,10 +42,19 @@ export class SuperuserComponent implements OnInit {
     'role': {
       'required': 'role is required.'
     },
-    'domaine': {
+    'dmn': {
       'required': 'domaine is required.'
     }
   };
+  @ViewChild('giForm') giForm: NgForm;
+  firstName = '';
+  lastName = '';
+  password = '';
+  codeAlliance = '';
+  email = '';
+  dmn = '';
+  role = '';
+
   searchKey: string;
   form;
   users: User[];
@@ -59,6 +67,7 @@ export class SuperuserComponent implements OnInit {
   ifCreate = false;
   ifAdmin = false;
   popupVisible = false;
+
   public search = new FormControl();
 
   constructor(private http: Http) {}
@@ -79,52 +88,44 @@ export class SuperuserComponent implements OnInit {
     this.getRoles().then(roles => this.roles = roles);
     this.getProjets().then(projets => this.projets = projets);
     this.getDomaines().then(domaines => this.domaines = domaines);
-    this.form = new FormGroup({
-      firstName: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(12),
+  }
+  inputValidation() {
+    if (!this.giForm) {return; }
+    const form = this.giForm.form;
 
-
-      ])),
-      lastName: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(12),
-
-
-      ])),
-      codeAlliance: new FormControl('', Validators.compose([
-        Validators.required,
-
-        Validators.pattern('[a-z 1-9]{8}')
-
-
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(14),
-
-
-      ])),
-      email: new FormControl(''),
-      dmn: new FormControl(''),
-      role: new FormControl('')
-
+    for (const field in this.formErrors) {
+      this.formErrors[field] = '';
+      const control = form.get(field);
+      if (control) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+          return false;
+        }
+      }
     }
-    );
+    return true;
   }
 
-
+  createuser() {
+    if (this.inputValidation()) {
+      this.onSubmit = function(user) {
+        this.http.post('/api/users', user).subscribe(response => response.json() as User[]);
+    };
+      console.log(User);
+    }
+  }
   onSubmit = function(user) {
-    console.log(user);
+
+
     this.http.post('/api/users', user).subscribe(response => response.json() as User[]
     );
+    console.log(user);
   };
-   showInfo(user) {
-        this.popupVisible = true;
-    }
+  showInfo(user) {
+    console.log('hi', user);
+    this.popupVisible = true;
+  }
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')
       .toPromise()

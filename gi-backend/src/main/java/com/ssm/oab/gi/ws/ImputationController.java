@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssm.oab.gi.dao.entity.Imputation;
 import com.ssm.oab.gi.service.ImputationService;
 import com.ssm.oab.gi.service.dto.ImputationDTO;
+import com.ssm.oab.gi.service.dto.ImputationsDTO;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -22,9 +23,12 @@ public class ImputationController {
 	public Iterable<ImputationDTO> getImputations() {
 		return service.getImputations();
 	}
+
 	@RequestMapping(value = "/imputations/mounth")
-	public Iterable<ImputationDTO> findImputationsByCodeAllianceForCurrentMounth(@RequestParam String codeAlliance) {
-		return service.findImputationsByUserForCurrentMounth();
+	public ImputationsDTO findImputationByCodeAllianceAndMonth(@RequestParam String codeAlliance,
+			@RequestParam String moisAnnee) {
+
+		return service.findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
 	}
 
 	@RequestMapping(value = "/imputations/{id}")
@@ -42,8 +46,9 @@ public class ImputationController {
 		service.update(imputation);
 	}
 
-	@RequestMapping(value = "/imputations", method = RequestMethod.POST)
-	public ImputationDTO create(@RequestBody ImputationDTO imputationToSave) {
-		return service.create(imputationToSave);
+	@RequestMapping(value = "/imputations/{codeAlliance}", method = RequestMethod.POST)
+	public ImputationsDTO create(@PathVariable(value = "codeAlliance") String codeAlliance,
+			@RequestBody ImputationsDTO imputationsToSave) {
+		return service.create(imputationsToSave, codeAlliance);
 	}
 }

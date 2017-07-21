@@ -27,12 +27,7 @@ public class ImputationTransformer {
 		ImputationDTO dto = null;
 		for (Imputation entity : entityList) {
 			if (entity != null) {
-				dto = new ImputationDTO();
-				dto.setCodeAlliance("");
-				dto.setCodeProjet("");
-				dto.setDate(entity.getDate());
-				dto.setId(entity.getId());
-				dto.setJour(entity.getJour());
+				dto = toDto(entity);
 				dtoList.add(dto);
 			}
 		}
@@ -45,6 +40,8 @@ public class ImputationTransformer {
 		if (dto != null) {
 			entity.setDate(dto.getDate());
 			entity.setJour(dto.getJour());
+			entity.setCodeProjet(dto.getCodeProjet());
+			entity.setCodeAlliance(dto.getCodeAlliance());
 		}
 
 		return entity;

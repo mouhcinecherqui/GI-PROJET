@@ -1,15 +1,15 @@
 package com.ssm.oab.gi.service.dto;
 
-import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ImputationDTO {
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	private Calendar date;
 
-	private Float jour;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private Date date;
+
+	private double jour;
 
 	private Long id;
 
@@ -17,23 +17,19 @@ public class ImputationDTO {
 
 	private String codeAlliance;
 
-	private List<String> joursDeLaSemaine;
-
-	private int joursDuMois;
-
-	public Calendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public Float getJour() {
+	public double getJour() {
 		return jour;
 	}
 
-	public void setJour(Float jour) {
+	public void setJour(double jour) {
 		this.jour = jour;
 	}
 
@@ -61,19 +57,4 @@ public class ImputationDTO {
 		this.id = id;
 	}
 
-	public List<String> getJoursDeLaSemaine() {
-		return joursDeLaSemaine;
-	}
-
-	public void setJoursDeLaSemaine(List<String> joursDeLaSemaine) {
-		this.joursDeLaSemaine = joursDeLaSemaine;
-	}
-
-	public int getJoursDuMois() {
-		return joursDuMois;
-	}
-
-	public void setJoursDuMois(int joursDuMois) {
-		this.joursDuMois = joursDuMois;
-	}
 }

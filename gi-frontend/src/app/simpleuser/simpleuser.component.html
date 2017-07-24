@@ -62,12 +62,12 @@
 					<tbody>
 						<tr style="text-align: center; width: 1000px;">
 							<td></td>
-							<td *ngFor=" let jr of imputations.calendrier.joursDuMois">{{jr.libelle}}</td>
+							<td *ngFor="let jr of imputations.calendrier.joursDuMois">{{jr.libelle}}</td>
 
 						</tr>
 						<tr style="text-align: center;">
 							<td>Jours</td>
-							<td *ngFor=" let jrm of imputations.calendrier.joursDuMois">{{jrm.jour}}</td>
+							<td *ngFor="let jrm of imputations.calendrier.joursDuMois">{{jrm.jour}}</td>
 						</tr>
 
 						<br>
@@ -79,11 +79,11 @@
 									<option *ngFor=" let projet of projets">{{projet.codeprojet}}
 									</option></select></td>
 
-<!-- 							<td><select -->
-<!-- 								style="width: 70px; font-size: 12px; font-weight: bold;"><option -->
-<!-- 										*ngFor=" let imputation of imputations">{{imputation.jour}}</option> -->
+							<td><select
+								style="width: 70px; font-size: 12px; font-weight: bold;"><option
+										*ngFor="let imp of listeImputation">{{imp.jour}}</option>
 
-<!-- 							</select></td> -->
+							</select></td>
 						</tr>
 						<br>
 

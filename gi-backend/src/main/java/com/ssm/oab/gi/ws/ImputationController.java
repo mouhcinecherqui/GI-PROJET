@@ -27,8 +27,8 @@ public class ImputationController {
 	@RequestMapping(value = "/imputations/mounth")
 	public ImputationsDTO findImputationByCodeAllianceAndMonth(@RequestParam String codeAlliance,
 			@RequestParam String moisAnnee) {
-
-		return service.findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
+		ImputationsDTO res = service.findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
+		return res;
 	}
 
 	@RequestMapping(value = "/imputations/{id}")

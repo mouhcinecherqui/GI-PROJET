@@ -1,4 +1,6 @@
 import {Projet} from '../superuser/projet';
+import {Imputation} from './Imputation';
+import {Imputations} from './Imputations';
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Http} from '@angular/http';
@@ -10,12 +12,16 @@ import {Http} from '@angular/http';
 export class SimpleuserComponent implements OnInit {
   projets: Projet[];
   imputations: Imputations;
+  listeImputation: Imputation[];
   form;
   constructor(private http: Http) {}
 
   ngOnInit() {
     this.getProjets().then(projets => this.projets = projets);
     this.getImputations().then(imputations => this.imputations = imputations);
+    console.log("imputations :     ===> " + this.imputations);
+    this.listeImputation = this.imputations.mapImputation.get('codeProjet');
+    this.imputations.mapImputation.get("codeProjet")
     this.form = new FormGroup({
       codeprojet: new FormControl('')
     });

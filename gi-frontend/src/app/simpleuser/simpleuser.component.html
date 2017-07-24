@@ -60,18 +60,21 @@
 					(ngSubmit)="onSub(form.value)">
 
 					<tbody>
-						<tr style="text-align: center; width: 1000px;">
+						<tr style="text-align: center; width: 1000px;"
+							*ngIf="imputations && imputations.calendrier && imputations.calendrier.joursDuMois.length > 0">
 							<td></td>
 							<td *ngFor="let jr of imputations.calendrier.joursDuMois">{{jr.libelle}}</td>
 
 						</tr>
-						<tr style="text-align: center;">
+						<tr style="text-align: center;"
+							*ngIf="imputations && imputations.calendrier && imputations.calendrier.joursDuMois.length > 0">
 							<td>Jours</td>
 							<td *ngFor="let jrm of imputations.calendrier.joursDuMois">{{jrm.jour}}</td>
 						</tr>
 
 						<br>
-						<tr id="imp">
+						<tr id="imp"
+							*ngIf="imputations && imputations.mapImputation && imputations.mapImputation['codeProjet']">
 							<td><select
 								style="width: 200px; font-size: 13px; font-weight: bold;"
 								formControlName="codeprojet"><option>Code
@@ -79,9 +82,11 @@
 									<option *ngFor=" let projet of projets">{{projet.codeprojet}}
 									</option></select></td>
 
-							<td><select
-								style="width: 70px; font-size: 12px; font-weight: bold;"><option
-										*ngFor="let imp of listeImputation">{{imp.jour}}</option>
+							<td
+								*ngFor="
+								let imputation of imputations.mapImputation['codeProjet']"><select
+								style="width: 70px; font-size: 12px; font-weight: bold;"><option>{{imputation.jour}}
+									</option>
 
 							</select></td>
 						</tr>

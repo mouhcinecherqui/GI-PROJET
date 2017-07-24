@@ -17,14 +17,18 @@ export class AuthenticationComponent {
 
   connectUser(userId: string, userPwd: string) {
 
-    if (userId === 'a') {
+    if (userId === 'admin') {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }
 
-    if (userId === 'b') {
+    if (userId === 'user') {
       this.authentication = false;
       this.router.navigate(['/simpleuser']);
+    }
+     if (userId === 'responsable') {
+      this.authentication = false;
+      this.router.navigate(['/superuser']);
     }
   }
   getUser(): Promise<User[]> {

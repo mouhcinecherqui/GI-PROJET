@@ -11,10 +11,9 @@
 
 			</div>
 			<div class="col-xs-3"></div>
-						<div class="col-xs-1">
-				<button routerLink="" routerLinkActive="active-link"
-					type="submit" class="btn btn-primary btn-sm center-block"
-					>My account</button>
+			<div class="col-xs-1">
+				<button routerLink="" routerLinkActive="active-link" type="submit"
+					class="btn btn-primary btn-sm center-block">My account</button>
 			</div>
 			<div class="col-xs-1">
 				<button routerLink="/logout" routerLinkActive="active-link"
@@ -35,12 +34,9 @@
 			</li>
 
 		</ul>
-		<br>
-		<br>
+		<br> <br>
 		<div *ngIf="ifList">
 			<div class="row"></div>
-			<div class="col-xs-2"></div>
-
 			<div class="col-xs-4">
 				<!-- 			<h2>Liste de collaborateurs</h2> -->
 				<div class="input-group">
@@ -51,9 +47,8 @@
 				</div>
 			</div>
 			<div class="row"></div>
-			<div class="col-xs-2"></div>
-			<div class="container" class="col-xs-8">
-			<br>
+			<div class="container" class="col-xs-6">
+				<br>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -74,7 +69,7 @@
 										(click)="getDetails(user.codeAlliance)">view details</a>
 								</p></th>
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
-								(click)="showInfo(user)"> </a></th>
+								(click)="onSelect(user)"> </a></th>
 
 							<th><i class="btn btn-danger glyphicon glyphicon-trash"
 								(click)="onDelete(user.codeAlliance)"></i></th>
@@ -83,59 +78,105 @@
 						</tr>
 					</tbody>
 				</table>
-
-
+				<div class="row"></div>
+				<div class="col-md-11"></div>
+				<div>
+					<button type="button" class="btn btn-primary">Export All</button>
+				</div>
 			</div>
-			<div class="row"></div>
-			<div class="col-md-9"></div>
-			<div>
-				<button type="button" class="btn btn-primary">Export All</button>
-			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
 
+				<div *ngIf="selectedUser">
+					<h2>{{selectedUser.firstName}} {{selectedUser.lastName}}
+						details!</h2>
+					<br>
+					<div class="input-group">
+						<label>Code Alliance: </label>{{selectedUser.codeAlliance}}
+					</div>
+					<br>
+					<div>
+						<label>FirstName: </label> <input class="form-control" type="text"
+							[(ngModel)]="selectedUser.firstName" placeholder="FirstName" />
+					</div>
+					<br>
+					<div class="input-group">
+						<label>LastName: </label> <input class="form-control" type="text"
+							[(ngModel)]="selectedUser.lastName" placeholder="LastName" />
+					</div>
+					<br>
+					<div class="input-group">
+						<label>Email: </label> <input class="form-control" type="text"
+							[(ngModel)]="selectedUser.email" placeholder="Email" />
+					</div>
+					<br>
+					<div class="input-group">
+						<label>Role: </label><select style="text-align: center"
+							name="role" class="form-control">
+							<option [(ngModel)]="selectedUser.role">
+								{{selectedUser.role}}</option>
+							<option *ngFor="let role of roles">{{role.role}}</option>
+						</select>
+					</div>
+					<br>
+					<div class="input-group">
+						<label>Domaine: </label> <select style="text-align: center"
+							name="Domaine" class="form-control">
+							<option [(ngModel)]="selectedUser.dmn">
+								{{selectedUser.dmn}}</option>
+							<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
+						</select>
+					</div>
+					<br>
+					<button type="submit" routerLink="/superuser"
+						routerLinkActive="active-link" class="btn btn-success">Save</button>
+					<button type="reset" class="btn btn-default">Reset</button>
+				</div>
+			</div>
 			<router-outlet></router-outlet>
 		</div>
 		<div *ngIf="ifCreate">
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="container" class="col-xs-4">
-					<form #giForm="ngForm" (ngSubmit)="onSubmit(form.value)">
+					<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input
-								[(ngModel)]="firstName" class="form-control" type="text"
+								formControlName="firstName" class="form-control" type="text"
 								name="firstName" placeholder="firstName">
 						</div>
-						<div *ngIf="formErrors.firstName" class="alert alert-danger">{{
-							formErrors.firstName }}</div>
 
 
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
-								class="form-control" name="lastName" placeholder="lastName">
+								formControlName="lastName" class="form-control" name="lastName"
+								placeholder="lastName">
 						</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input type="password"
-								class="form-control" name="password" placeholder="Password">
+								formControlName="password" class="form-control" name="password"
+								placeholder="Password">
 						</div>
 
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-credit-card"></i></span> <input type="text"
-								class="form-control" name="CodeAlliance"
-								placeholder="Code Alliance">
+								formControlName="CodeAlliance" class="form-control"
+								name="CodeAlliance" placeholder="Code Alliance">
 						</div>
 
 
 						<br> <br>
 						<div class=" form-group">
 							<select style="text-align: center" name="role"
-								class="form-control">
+								formControlName="role" class="form-control">
 								<option></option>
 								<option *ngFor="let role of roles">{{role.role}}</option>
 							</select>
@@ -144,7 +185,7 @@
 						<br>
 						<div class=" form-group">
 							<select style="text-align: center;" class="form-control"
-								name="dmn">
+								formControlName="dmn" name="dmn">
 								<option>ALL</option>
 								<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
 							</select>
@@ -155,15 +196,13 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-								type="email" class="form-control" name="email"
-								placeholder="email">
+								formControlName="email" type="email" class="form-control"
+								name="email" placeholder="email">
 						</div>
 
 						<br> <br>
 
-						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success"
-							(click)="createuser()">Save</button>
+						<button type="submit" class="btn btn-success" value="submit">Save</button>
 						<button type="reset" class="btn btn-default">Reset</button>
 					</form>
 
@@ -178,40 +217,40 @@
 		<div *ngIf="ifAdmin">
 			<div class="row"></div>
 			<div class="col-xs-2"></div>
-				<div class="container" class="col-xs-8" >
+			<div class="container" class="col-xs-8">
 				<br>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Code projet</th>
-								<th>Nom projet</th>
-								<th>Nom complet</th>
-								<th>Description du Projet</th>
-							</tr>
-						</thead>
-						<tbody *ngFor="let projet of projets">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Code projet</th>
+							<th>Nom projet</th>
+							<th>Nom complet</th>
+							<th>Description du Projet</th>
+						</tr>
+					</thead>
+					<tbody *ngFor="let projet of projets">
 
-							<tr>
-								<td>{{projet.codeprojet}}</td>
-								<td>{{projet.nomprojet}}</td>
-								<td>{{projet.nomcomplet}}</td>
-								<td>{{projet.descriptionprojet}}</td>
-								<th><a class="btn btn-info glyphicon glyphicon-pencil">
-								</a></th>
+						<tr>
+							<td>{{projet.codeprojet}}</td>
+							<td>{{projet.nomprojet}}</td>
+							<td>{{projet.nomcomplet}}</td>
+							<td>{{projet.descriptionprojet}}</td>
+							<th><a class="btn btn-info glyphicon glyphicon-pencil">
+							</a></th>
 
-								<th><i class="btn btn-danger glyphicon glyphicon-trash"></i></th>
-							</tr>
-						</tbody>
-					</table>
-					<button type="button" class="btn btn-success">Save</button>
-					<button type="button" class="btn">Add</button>
-				</div>
-				<div class="col-xs-1"></div>
-				<div class="col-xs-1">
-					<button type="button" class="btn btn-sm center-block"
-						(click)="showList()">Back</button>
-				</div>
+							<th><i class="btn btn-danger glyphicon glyphicon-trash"></i></th>
+						</tr>
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-success">Save</button>
+				<button type="button" class="btn">Add</button>
 			</div>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-1">
+				<button type="button" class="btn btn-sm center-block"
+					(click)="showList()">Back</button>
+			</div>
+		</div>
 	</div>
 </body>
 <router-outlet></router-outlet>

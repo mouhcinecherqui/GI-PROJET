@@ -1,4 +1,5 @@
 import {Projet} from '../superuser/projet';
+import {User} from '../superuser/user';
 import {Calendrier} from './Calendrier';
 import {Imputation} from './Imputation';
 import {Imputations} from './Imputations';
@@ -11,28 +12,36 @@ import {Http} from '@angular/http';
   styleUrls: ['./simpleuser.component.css']
 })
 export class SimpleuserComponent implements OnInit {
+  getUsers: any;
   projets: Projet[];
   imputations: Imputations;
   listeImputation: Imputation[];
+  users: User[];
   form;
   constructor(private http: Http) {}
 
   ngOnInit() {
     this.getProjets().then(projets => this.projets = projets);
     this.getImputations().then(imputations => this.imputations = imputations);
-//    setTimeout(function() {
-//      console.log('VIDEO HAS STOPPED');
-//    }, 5000);
-    console.log("imputations :     ===> " + this.imputations);
+    //    setTimeout(function() {
+    //      console.log('VIDEO HAS STOPPED');
+    //    }, 5000);
+    console.log('imputations :     ===> ' + this.imputations);
     //    this.listeImputation = this.imputations.mapImputation.get('codeProjet');
     //    this.imputations.mapImputation.get("codeProjet")
     this.form = new FormGroup({
-      codeprojet: new FormControl('')
+      codeProjet: new FormControl('')
     });
+    if (this.imputations && this.imputations.mapImputation.size > 0) {
+      console.log('map ==> ' + this.imputations.mapImputation.keys().next().value);
+      this.form.codeProjet = this.imputations.mapImputation.keys().next().value;
+    }
+    //    this.imputations.mapImputation.get("codeProjet")
   }
   logoutUser() {
 
   }
+
   getProjets(): Promise<Projet[]> {
     return this.http.get('/api/projets')
       .toPromise()
@@ -41,7 +50,7 @@ export class SimpleuserComponent implements OnInit {
   getImputations(): Promise<Imputations> {
     return this.http.get('/api/imputations/mounth?codeAlliance=abcd1234&moisAnnee')
       .toPromise()
-      .then(response => response.json() as Imputations).catch(this.handleError);;
+      .then(response => response.json() as Imputations).catch(this.handleError);
   }
   onSub = function(im: Imputations) {
     //    console.log("im " + im.codeprojet);

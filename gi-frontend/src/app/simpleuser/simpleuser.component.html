@@ -5,19 +5,19 @@
 		<div class="col-xs-1"></div>
 		<div class="col-xs-3">
 
-			<h2>ALL Details</h2>
+			<h2>A</h2>
 			<br>
 			<p>
-				<label>firstname: Mouhcine</label>
+				<label>firstname: </label>
 			</p>
 			<p>
-				<label>lastname: Cherqui</label>
+				<label>lastname: </label>
 			</p>
 			<p>
-				<label>Code Alliance: ecad3215</label>
+				<label>Code Alliance: </label>
 			</p>
 			<p>
-				<label>email: m.cherqui@sofrecom.ma</label>
+				<label>email: </label>
 			</p>
 
 		</div>
@@ -77,8 +77,10 @@
 							*ngIf="imputations && imputations.mapImputation && imputations.mapImputation['codeProjet']">
 							<td><select
 								style="width: 200px; font-size: 13px; font-weight: bold;"
-								formControlName="codeprojet"><option>Code
-										Projet</option>
+								formControlName="codeProjet"><option
+										*ngIf="form.codeProjet">{{form.codeProjet}}</option>
+									<option *ngIf="this.imputations.mapImputation.size>0">Code
+										Projet {{this.imputations.mapImputation.keys().next().value}}</option>
 									<option *ngFor=" let projet of projets">{{projet.codeprojet}}
 									</option></select></td>
 
@@ -102,9 +104,8 @@
 	</div>
 	<div class="col-xs-1"></div>
 	<div>
-		<button type="submit" value="submit" class="btn btn-success">Save</button>
 		<button type="button" value="testV" class="btn btn-success"
-			(click)="onSub(form.value)">Valider</button>
+			(click)="onSub(form.value)">Save</button>
 		<button type="button" class="btn">Add</button>
 	</div>
 

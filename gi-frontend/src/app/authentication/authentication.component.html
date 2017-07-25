@@ -16,15 +16,14 @@
 				<span class="input-group-addon"><i
 					class="glyphicon glyphicon-lock"></i></span> <input #userPwd id="password"
 					type="password" class="form-control" name="password"
-					placeholder="Password">
+					placeholder="Mot de passe">
 			</div>
 			<div class="checkbox"></div>
-			<label><input type="checkbox"> Remember me</label>
+			<label><input type="checkbox"> Se souvenir de moi</label>
 			<p>
-				<a routerLink="/forgetpwd" routerLinkActive="active-link">forget
-					password</a>
+				<a routerLink="/forgetpwd" routerLinkActive="active-link">Mot de passe oublié</a>
 			</p>
-			<button type="submit" (click)="connectUser(userId.value,  userPwd.value)">login</button>
+			<button type="submit" class="btn btn-primary" (click)="connectUser(userId.value,  userPwd.value)">connexion</button>
 		</form>
 	</div>
 </div>

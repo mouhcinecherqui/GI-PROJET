@@ -14,6 +14,7 @@ import {AdminComponent} from './admin/admin.component';
 import {ForgetpwdComponent} from './forgetpwd/forgetpwd.component';
 import {MyFilterPipe} from './superuser/MyFilterPiple';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MoncompteComponent } from './moncompte/moncompte.component';
 
 
 
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     AdminComponent,
     ForgetpwdComponent,
     MyFilterPipe,
+    MoncompteComponent,
 
   ],
   imports: [

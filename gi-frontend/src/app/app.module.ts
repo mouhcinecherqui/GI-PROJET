@@ -5,16 +5,16 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 import {Ng2FilterPipeModule} from 'ng2-filter-pipe';
 import {AppComponent} from './app.component';
-import {SuperuserComponent} from './superuser/superuser.component';
-import {NewuserComponent} from './newuser/newuser.component';
-import {ListwithdetComponent} from './listwithdet/listwithdet.component';
 import {SimpleuserComponent} from './simpleuser/simpleuser.component';
 import {AuthenticationComponent} from './authentication/authentication.component';
-import {AdminComponent} from './admin/admin.component';
 import {ForgetpwdComponent} from './forgetpwd/forgetpwd.component';
 import {MyFilterPipe} from './superuser/MyFilterPiple';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MoncompteComponent } from './moncompte/moncompte.component';
+import {MoncompteComponent} from './moncompte/moncompte.component';
+import {DropdownModule} from 'ng2-dropdown';
+import {SuperuserComponent} from './superuser/superuser.component';
+
+
 
 
 
@@ -24,8 +24,6 @@ const appRoutes: Routes = [
   {path: 'superuser', component: SuperuserComponent}
   , {path: '#/', redirectTo: '#/superuser', pathMatch: 'prefix'},
   {path: 'simpleuser', component: SimpleuserComponent}
-  , {path: '#/', redirectTo: '#/simpleuser', pathMatch: 'full'},
-  {path: 'creation', component: NewuserComponent}
   , {path: '#/', redirectTo: '#/creation', pathMatch: 'full'},
   {path: 'logout', component: AuthenticationComponent}
   , {path: '#/', redirectTo: '#/logout', pathMatch: 'full'},
@@ -40,14 +38,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SuperuserComponent,
-    NewuserComponent,
-    ListwithdetComponent,
     SimpleuserComponent,
     AuthenticationComponent,
-    AdminComponent,
     ForgetpwdComponent,
     MyFilterPipe,
     MoncompteComponent,
+
 
   ],
   imports: [
@@ -59,6 +55,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     JsonpModule,
     ReactiveFormsModule,
+    DropdownModule,
   ],
   exports: [
     RouterModule

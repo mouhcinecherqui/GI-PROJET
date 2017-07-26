@@ -11,15 +11,19 @@
 
 			</div>
 			<div class="col-xs-3"></div>
-			<div class="col-xs-1">
-				<button routerLink="" routerLinkActive="active-link" type="submit"
-					class="btn btn-primary btn-sm center-block">My account</button>
-			</div>
-			<div class="col-xs-1">
-				<button routerLink="/logout" routerLinkActive="active-link"
-					type="submit" class="btn btn-primary btn-sm center-block"
-					(click)="logoutUser()">logout</button>
-			</div>
+			
+  <div class="dropdown" dropdown [dropdownToggle]="false" (onOpen)="doSomeActionOnOpen()" (onClose)="doSomeActionOnClose()">
+    <button class="btn btn-primary" dropdown-open>mon compte <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a href="#">changer mot de passe</a></li>
+<li><a routerLink="/logout" routerLinkActive="active-link">logout</a></li>
+    </ul>
+</div>
+<!-- 			<div class="col-xs-1"> -->
+<!-- 				<button routerLink="/logout" routerLinkActive="active-link" -->
+<!-- 					type="submit" class="btn btn-primary btn-sm center-block" -->
+<!-- 					(click)="logoutUser()">logout</button> -->
+<!-- 			</div> -->
 		</div>
 
 		<ul class="nav nav-tabs">
@@ -52,8 +56,8 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Firstname</th>
-							<th>Lastname</th>
+							<th>Prenom</th>
+							<th>Nom</th>
 							<th>Code Alliance</th>
 							<th>view details</th>
 						</tr>
@@ -73,7 +77,7 @@
 
 							<th><i class="btn btn-danger glyphicon glyphicon-trash"
 								(click)="onDelete(user.codeAlliance)"></i></th>
-							<th><i class="btn btn-def glyphicon glyphicon-export"></i></th>
+							<th><i class="btn btn-def glyphicon glyphicon-export" ></i></th>
 
 						</tr>
 					</tbody>
@@ -92,7 +96,9 @@
 						details!</h2>
 					<br>
 					<div class="input-group">
-						<label>Code Alliance: </label>{{selectedUser.codeAlliance}}
+						<label>Code Alliance: </label> <input class="form-control"
+							type="text" [(ngModel)]="selectedUser.codeAlliance"
+							placeholder="CodeAlliance" disabled />
 					</div>
 					<br>
 					<div>
@@ -110,23 +116,23 @@
 							[(ngModel)]="selectedUser.email" placeholder="Email" />
 					</div>
 					<br>
-					<div class="input-group">
-						<label>Role: </label><select style="text-align: center"
-							name="role" class="form-control">
-							<option [(ngModel)]="selectedUser.role">
-								{{selectedUser.role}}</option>
-							<option *ngFor="let role of roles">{{role.role}}</option>
-						</select>
-					</div>
-					<br>
+					<!-- 					<div class="input-group"> -->
+					<!-- 						<label>Role: </label><select style="text-align: center" -->
+					<!-- 							name="role" class="form-control"> -->
+					<!-- 							<option [(ngModel)]="selectedUser.role"> -->
+					<!-- 								{{selectedUser.role}}</option> -->
+					<!-- 							<option *ngFor="let role of roles">{{role.role}}</option> -->
+					<!-- 						</select> -->
+					<!-- 					</div> -->
+					<!-- 					<br> -->
 					<div class="input-group">
 						<label>Domaine: </label> <select style="text-align: center"
 							name="Domaine" class="form-control">
-							<option [(ngModel)]="selectedUser.dmn">
-								{{selectedUser.dmn}}</option>
+							<option [(ngModel)]="selectedUser.dmn"></option>
 							<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
 						</select>
 					</div>
+
 					<br>
 					<button type="submit" routerLink="/superuser"
 						routerLinkActive="active-link" class="btn btn-success">Save</button>
@@ -139,67 +145,90 @@
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="container" class="col-xs-4">
-					<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+					<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-group has-error has-feedback" >
 						<br> <br>
-						<div class="input-group">
+						<div class="input-group" >
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input
+								class="glyphicon glyphicon-user"></i></span > <input
 								formControlName="firstName" class="form-control" type="text"
-								name="firstName" placeholder="firstName">
-						</div>
+								name="firstName" placeholder="firstName" required>
 
+						
+						
+							<span *ngIf="form.controls.firstName.errors?.required"
+								class="glyphicon glyphicon-remove form-control-feedback"></span>
+						</div>
 
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
 								formControlName="lastName" class="form-control" name="lastName"
-								placeholder="lastName">
+								placeholder="lastName" required>
+						</div>
+						<div>
+							<p *ngIf="form.controls.lastName.errors?.required"
+								style="color: red;">lastName required!</p>
 						</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input type="password"
 								formControlName="password" class="form-control" name="password"
-								placeholder="Password">
+								placeholder="Password" required>
 						</div>
-
+						<div>
+							<p *ngIf="form.controls.lastName.errors?.required"
+								style="color: red;">password required!</p>
+						</div>
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-credit-card"></i></span> <input type="text"
 								formControlName="CodeAlliance" class="form-control"
-								name="CodeAlliance" placeholder="Code Alliance">
+								name="CodeAlliance" placeholder="Code Alliance" required>
 						</div>
-
+						<div>
+							<p *ngIf="form.controls.CodeAlliance.errors?.required"
+								style="color: red;">CodeAlliance required!</p>
+						</div>
 
 						<br> <br>
 						<div class=" form-group">
 							<select style="text-align: center" name="role"
-								formControlName="role" class="form-control">
+								formControlName="role" class="form-control" required>
 								<option></option>
 								<option *ngFor="let role of roles">{{role.role}}</option>
 							</select>
 						</div>
-
+						<div>
+							<p *ngIf="form.controls.role.errors?.required"
+								style="color: red;">role required!</p>
+						</div>
 						<br>
 						<div class=" form-group">
 							<select style="text-align: center;" class="form-control"
-								formControlName="dmn" name="dmn">
+								formControlName="dmn" name="dmn" required>
 								<option>ALL</option>
 								<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
 							</select>
 
 						</div>
-
+						<div>
+							<p *ngIf="form.controls.dmn.errors?.required"
+								style="color: red;">domaine required!</p>
+						</div>
 						<br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 								formControlName="email" type="email" class="form-control"
-								name="email" placeholder="email">
+								name="email" placeholder="email" required>
 						</div>
-
+						<div>
+							<p *ngIf="form.controls.email.errors?.required"
+								style="color: red;">email required!</p>
+						</div>
 						<br> <br>
 
 						<button type="submit" class="btn btn-success" value="submit">Save</button>

@@ -17,9 +17,6 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class SuperuserComponent implements OnInit {
   allItems: any;
-
-
-
   searchKey: string;
   form;
   users: User[];

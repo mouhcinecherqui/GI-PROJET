@@ -13,6 +13,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MoncompteComponent} from './moncompte/moncompte.component';
 import {DropdownModule} from 'ng2-dropdown';
 import {SuperuserComponent} from './superuser/superuser.component';
+import {SimpleutilisateurComponent} from './simpleutilisateur/simpleutilisateur.component';
 
 
 
@@ -30,7 +31,9 @@ const appRoutes: Routes = [
   {path: 'viewdetails', component: SimpleuserComponent}
   , {path: '#/', redirectTo: '#/viewdetails', pathMatch: 'full'},
   {path: 'forgetpwd', component: ForgetpwdComponent}
-  , {path: '#/', redirectTo: '#/forgetpwd', pathMatch: 'full'}
+  , {path: '#/', redirectTo: '#/forgetpwd', pathMatch: 'full'},
+  {path: 'simpleutilisateur', component: SimpleutilisateurComponent}
+  , {path: '#/', redirectTo: '#/simpleutilisateur', pathMatch: 'full'},
 ];
 
 
@@ -43,6 +46,7 @@ const appRoutes: Routes = [
     ForgetpwdComponent,
     MyFilterPipe,
     MoncompteComponent,
+    SimpleutilisateurComponent,
 
 
   ],

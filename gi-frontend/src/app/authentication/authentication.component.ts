@@ -24,7 +24,7 @@ export class AuthenticationComponent {
 
     if (userId === 'user') {
       this.authentication = false;
-      this.router.navigate(['/simpleuser']);
+      this.router.navigate(['/simpleutilisateur']);
     }
      if (userId === 'responsable') {
       this.authentication = false;

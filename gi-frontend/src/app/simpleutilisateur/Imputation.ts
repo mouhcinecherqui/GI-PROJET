@@ -1,7 +1,11 @@
 export class Imputation {
   date: Date;
-  jour: number;
+  jour: string;
   id: number;
   codeProjet: string;
   codeAlliance: string;
+
+  constructor(private lJour: string) {
+    this.jour = lJour;
+  }
 }

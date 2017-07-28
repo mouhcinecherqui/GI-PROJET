@@ -5,6 +5,7 @@ import {User} from './user';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, FormControl, Validators, NgForm} from '@angular/forms';
 import {Http} from '@angular/http';
+import {Router} from '@angular/router';
 import {Angular2Csv} from 'angular2-csv';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/debounceTime';
@@ -29,6 +30,11 @@ export class SuperuserComponent implements OnInit {
   ifCreate = false;
   ifAdmin = false;
   selectedUser: User;
+  ifDomaine = false;
+  ifProjet = false;
+  selecteProjet: Projet;
+  selectDomaine: Domaine;
+  router: Router;
 
 
   public search = new FormControl();
@@ -55,11 +61,16 @@ export class SuperuserComponent implements OnInit {
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       password: new FormControl(''),
-      CodeAlliance: new FormControl(''),
+      codeAlliance: new FormControl(''),
       email: new FormControl(''),
       dmn: new FormControl(''),
       role: new FormControl(''),
-
+      codeprojet: new FormControl(''),
+      nomprojet: new FormControl(''),
+      nomcomplet: new FormControl(''),
+      descriptionprojet: new FormControl(''),
+      NOMdomaine: new FormControl(''),
+      descriptiondmn: new FormControl(''),
     });
   }
   onSelect(user: User): void {
@@ -71,6 +82,12 @@ export class SuperuserComponent implements OnInit {
     console.log(user.role);
     this.selectedUser = user;
   }
+  onSelectep(projet: Projet): void {
+    this.selecteProjet = projet;
+  }
+  onSelected(domaine: Domaine): void {
+    this.selectDomaine = domaine;
+  }
 
 
   onSubmit = function(user) {
@@ -78,13 +95,40 @@ export class SuperuserComponent implements OnInit {
     );
     console.log(user);
   };
+  onSubmitp = function(projet) {
+    this.http.post('/api/projets', projet).subscribe(response => response.json() as Projet[]
+    );
+    this.ifProjet = false;
+    console.log(projet);
+  };
+  onSubmitd = function(domaine) {
+    this.http.post('/api/domaines', domaine).subscribe(response => response.json() as Domaine[]
+    );
+    this.ifDomaine = false;
+    console.log(domaine);
+  };
   doSomeActionOnOpen() {
     console.log('hi');
   };
-    doSomeActionOnClose() {
+  doSomeActionOnClose() {
     console.log('bye');
   };
+  addProjet() {
+    this.ifProjet = true;
+    console.log('mc');
+  }
+  addDomaine() {
+    this.ifDomaine = true;
 
+    console.log('ch');
+  }
+  cancel() {
+
+    this.ifProjet = false;
+  }
+  cancel1() {
+    this.ifDomaine = false;
+  }
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')
       .toPromise()
@@ -112,7 +156,6 @@ export class SuperuserComponent implements OnInit {
       .then(response => response.json() as Projet[]);
   }
 
-
   deleteUser(codeAlliance: string): Promise<void> {
     console.log('ach w9e3 ' + codeAlliance);
     return this.http.delete('/api/users/' + codeAlliance)
@@ -126,7 +169,32 @@ export class SuperuserComponent implements OnInit {
       .toPromise()
       .then(response => response.json() as User[]);
   };
+  deleteProjet(codeprojet: string): Promise<void> {
+    console.log('ach w9e3 ' + codeprojet);
+    return this.http.delete('/api/projets/' + codeprojet)
+      .toPromise()
+      .then(() => null).catch(this.handleError);
+  }
 
+  onDeletep = function(codeprojet: string) {
+    this.deleteProjet(codeprojet).then(() => null);
+    this.http.get('/api/projets')
+      .toPromise()
+      .then(response => response.json() as Projet[]);
+  };
+  deleteDomaine(dmn: string): Promise<void> {
+    console.log('ach w9e3 ' + dmn);
+    return this.http.delete('/api/domaines/' + dmn)
+      .toPromise()
+      .then(() => null).catch(this.handleError);
+  }
+
+  onDeleted = function(dmn: string) {
+    this.deleteDomaine(dmn).then(() => null);
+    this.http.get('/api/domaines')
+      .toPromise()
+      .then(response => response.json() as Domaine[]);
+  };
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
@@ -135,10 +203,12 @@ export class SuperuserComponent implements OnInit {
     this.ifCreate = true;
     this.ifList = false;
     this.ifAdmin = false;
+    this.ngOnInit();
   }
 
   getDetails(codeAlliance) {
-    alert(codeAlliance);
+    //    this.router.navigate(['/viewdetails', codeAlliance]);
+    //    alert(codeAlliance);
   }
 
   showList() {
@@ -152,6 +222,7 @@ export class SuperuserComponent implements OnInit {
     this.ifCreate = false;
     this.ifList = false;
     this.ifAdmin = true;
+    this.ngOnInit();
   }
 
   logoutUser() {

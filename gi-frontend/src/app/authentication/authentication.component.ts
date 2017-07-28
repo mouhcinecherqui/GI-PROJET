@@ -17,16 +17,16 @@ export class AuthenticationComponent {
 
   connectUser(userId: string, userPwd: string) {
 
-    if (userId === 'admin') {
+    if (userId === 'admin' && userPwd === 'admin') {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }
 
-    if (userId === 'user') {
+    if (userId === 'user' && userPwd === 'user') {
       this.authentication = false;
       this.router.navigate(['/simpleutilisateur']);
     }
-     if (userId === 'responsable') {
+     if (userId === 'responsable'  && userPwd === 'resp') {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }

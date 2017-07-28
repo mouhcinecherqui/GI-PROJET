@@ -67,7 +67,12 @@ export class SimpleuserComponent implements OnInit {
   logoutUser() {
 
   }
+  doSomeActionOnClose() {
 
+  }
+  doSomeActionOnOpen() {
+
+  }
   getImputationsByMonthYear($event) {
     //    console.log('mrs ===>  ' + $event);
     //    console.log('mrs ===>  ' + $event.target);

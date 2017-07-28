@@ -1,5 +1,20 @@
 
 <body>
+<div class="row">
+		<div class="col-xs-10"></div>
+		<div class="dropdown" dropdown [dropdownToggle]="false"
+			(onOpen)="doSomeActionOnOpen()" (onClose)="doSomeActionOnClose()">
+			<button class="btn btn-primary" dropdown-open>
+				mon compte <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a (click)="onSelect(user)">changer mot de passe</a></li>
+				<li><a routerLink="/logout" routerLinkActive="active-link">logout</a></li>
+			</ul>
+</div></div>
+
+<br>
+<br>
 	<div class="row">
 
 		<div class="col-xs-1"></div>
@@ -7,19 +22,19 @@
 
 			<!-- 			<h2>A</h2> -->
 			<br>
-			<p>
-				<label>firstname: </label> <label>lastname: </label>
+			<ul>
+			<li>Firstname: Mouhcine</li>
+			<li>Lastname: Cherqui</li>
 				<!-- 				<label>Code Alliance: </label> -->
 				<!-- 				<label>email: </label> -->
-			</p>
+		</ul>
 
 		</div>
-		<div class="col-xs-7"></div>
-		<div class="col-xs-1">
-			<button routerLink="/logout" routerLinkActive="active-link"
-				type="submit" class="btn btn-primary btn-sm center-block"
-				(click)="logoutUser()">logout</button>
-		</div>
+		<div class="col-xs-6"></div>
+				<div class="col-xs-1">
+					<button type="button" class="btn btn-sm center-block"
+						(click)="showList()">Back</button>
+				</div>
 	</div>
 	<div class="col-xs-5"></div>
 	<div class="col-xs-3" *ngIf="listeMoisAnnee && defaultMoisAnnee">

@@ -1,12 +1,16 @@
 package com.ssm.oab.gi.service.dto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import com.ssm.oab.gi.dao.entity.Projet;
 
 public class ImputationsDTO {
 
+	private int id;
 	private Calendrier calendrier;
-	private Map<String, List<ImputationDTO>> mapImputation;
+	private Projet projet;
+	private List<ImputationDTO> listeImputation = new ArrayList<>();
 
 	public Calendrier getCalendrier() {
 		return calendrier;
@@ -16,12 +20,28 @@ public class ImputationsDTO {
 		this.calendrier = calendrier;
 	}
 
-	public Map<String, List<ImputationDTO>> getMapImputation() {
-		return mapImputation;
+	public Projet getProjet() {
+		return projet;
 	}
 
-	public void setMapImputation(Map<String, List<ImputationDTO>> mapImputation) {
-		this.mapImputation = mapImputation;
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
+
+	public List<ImputationDTO> getListeImputation() {
+		return listeImputation;
+	}
+
+	public void setListeImputation(List<ImputationDTO> listeImputation) {
+		this.listeImputation = listeImputation;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -16,7 +16,7 @@ public class Projet implements Serializable {
 
 	@Column(name = "DESCRIPTIONPROJET")
 	private String descriptionprojet;
-	
+
 	@Column(name = "NOMPROJET")
 	private String nomprojet;
 
@@ -28,6 +28,10 @@ public class Projet implements Serializable {
 	private String codeprojet;
 
 	public Projet() {
+	}
+
+	public Projet(String codeprojet) {
+		this.codeprojet = codeprojet;
 	}
 
 	public Projet(String codeprojet, String descriptionprojet, String nomprojet, String nomcomplet) {
@@ -60,7 +64,7 @@ public class Projet implements Serializable {
 	public void setNomcomplet(String nomcomplet) {
 		this.nomcomplet = nomcomplet;
 	}
-	
+
 	public String getNomprojet() {
 		return nomprojet;
 	}
@@ -68,8 +72,5 @@ public class Projet implements Serializable {
 	public void setNomprojet(String nomprojet) {
 		this.nomprojet = nomprojet;
 	}
-
-
-
 
 }

@@ -3,14 +3,13 @@ package com.ssm.oab.gi.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ssm.oab.gi.dao.ImputationRepository;
 import com.ssm.oab.gi.dao.entity.Imputation;
+import com.ssm.oab.gi.dao.entity.Projet;
 import com.ssm.oab.gi.service.dto.Calendrier;
 import com.ssm.oab.gi.service.dto.ImputationDTO;
 import com.ssm.oab.gi.service.dto.ImputationsDTO;
@@ -23,6 +22,9 @@ public class ImputationService {
 	@Autowired
 	private ImputationRepository imputationRepository;
 
+	@Autowired
+	private ProjetService projetService;
+
 	private ImputationTransformer transformer = new ImputationTransformer();
 
 	public Iterable<ImputationDTO> getImputations() {
@@ -31,47 +33,47 @@ public class ImputationService {
 		return listeImputations;
 	}
 
-	public ImputationsDTO findImputationsByCodeAllianceAndMonth(String codeAlliance, String moisAnnee) {
+	public List<ImputationsDTO> findImputationsByCodeAllianceAndMonth(String codeAlliance, String moisAnnee) {
 		Iterable<ImputationDTO> listImputations = transformer
 				.toDto(imputationRepository.findImputationsByCodeAlliance(codeAlliance));
 
-		return getImputationsForCurrentMounth(listImputations);
+		return getImputationsForCurrentMounth(listImputations, codeAlliance, moisAnnee);
 	}
 
-	private ImputationsDTO getImputationsForCurrentMounth(Iterable<ImputationDTO> listImputationsDTO) {
-		Map<String, List<ImputationDTO>> mapImputations = new HashMap<>();
+	private List<ImputationsDTO> getImputationsForCurrentMounth(Iterable<ImputationDTO> listImputationsDTO,
+			String codeAlliance, String moisAnnee) {
+		List<ImputationsDTO> listeImputations = new ArrayList<>();
 
-		ImputationsDTO imputationsDTO = new ImputationsDTO();
+		int requestedtMonth = Integer.parseInt(moisAnnee.substring(0, 2));
+		int requestedtYear = Integer.parseInt(moisAnnee.substring(3, moisAnnee.length()));
 
-		Calendar currentCalendar = Calendar.getInstance();
-		int currentMonth = currentCalendar.get(Calendar.MONTH);
-
-		for (ImputationDTO dto : listImputationsDTO) {
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(dto.getDate());
-			int month = calendar.get(Calendar.MONTH);
-			if (month == currentMonth) {
-
-				if (mapImputations.containsKey(dto.getCodeProjet())) {
-					mapImputations.get(dto.getCodeProjet()).add(dto);
-				} else {
-					List<ImputationDTO> listeImputation = new ArrayList<>();
-					listeImputation.add(dto);
-					mapImputations.put(dto.getCodeProjet(), listeImputation);
+		for (int i = 1; i <= 5; i++) {
+			ImputationsDTO imputationsDTO = new ImputationsDTO();
+			imputationsDTO.setId(i);
+			for (ImputationDTO dto : listImputationsDTO) {
+				imputationsDTO.setCalendrier(getCalendrier(requestedtMonth, requestedtYear));
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(dto.getDate());
+				int month = calendar.get(Calendar.MONTH) + 1;
+				if (month == requestedtMonth && dto.getIdImputations() == i) {
+					imputationsDTO.setProjet(new Projet(dto.getCodeProjet()));
+					imputationsDTO.getListeImputation().add(dto);
 				}
-
 			}
+			if (imputationsDTO.getListeImputation().isEmpty()) {
+				init(imputationsDTO, codeAlliance, requestedtMonth, requestedtYear, i);
+			}
+			listeImputations.add(imputationsDTO);
 		}
-
-		imputationsDTO.setCalendrier(getCalendrier());
-		imputationsDTO.setMapImputation(mapImputations);
-		return imputationsDTO;
+		return listeImputations;
 	}
 
-	private Calendrier getCalendrier() {
+	private Calendrier getCalendrier(int mois, int annee) {
 		Calendrier calendrier = new Calendrier();
 		SimpleDateFormat fmt = new SimpleDateFormat("MMMMMM");
 		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, mois - 1);
+		cal.set(Calendar.YEAR, annee);
 		calendrier.setAnnee(cal.get(Calendar.YEAR));
 		calendrier.setNomMois(fmt.format(cal.getTime()));
 		calendrier.setJoursDuMois(getJoursDuMois(cal));
@@ -85,7 +87,8 @@ public class ImputationService {
 		cal.set(Calendar.DAY_OF_MONTH, 1);
 		SimpleDateFormat fmt = new SimpleDateFormat("EEE");
 		JourDuMois jourDuMois = null;
-		for (int i = 1; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+		int nbJoursMois = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		for (int i = 1; i <= nbJoursMois; i++) {
 			jourDuMois = new JourDuMois();
 			jourDuMois.setJour(i);
 			jourDuMois.setLibelle(fmt.format(cal.getTime()));
@@ -99,11 +102,12 @@ public class ImputationService {
 		return imputationRepository.findOne(id);
 	}
 
-	public ImputationsDTO create(ImputationsDTO imputationToSave, String codeAlliance) {
+	public ImputationsDTO create(ImputationsDTO imputationToSave, String codeAlliance, String moisAnnee) {
 
-		ImputationsDTO dto = init(imputationToSave, codeAlliance);
+		ImputationsDTO dto = null;// init(imputationToSave, codeAlliance,
+									// moisAnnee);
 
-		List<ImputationDTO> listeImputationDTO = dto.getMapImputation().values().iterator().next();
+		List<ImputationDTO> listeImputationDTO = dto.getListeImputation();
 		for (ImputationDTO imputationDTO : listeImputationDTO) {
 			Imputation imputation = transformer.toEntity(imputationDTO);
 			imputationRepository.save(imputation);
@@ -111,38 +115,48 @@ public class ImputationService {
 		return dto;
 	}
 
-	private ImputationsDTO init(ImputationsDTO imputationToSave, String codeAlliance) {
+	private void init(ImputationsDTO imputationToSave, String codeAlliance, int mois, int annee, int idImputations) {
 
-		Map<String, List<ImputationDTO>> mapImputation = new HashMap<>();
 		List<ImputationDTO> listeImputationDTO = new ArrayList<>();
 		ImputationDTO imputationDTO = null;
 
-		imputationToSave.setCalendrier(getCalendrier());
+		imputationToSave.setCalendrier(getCalendrier(mois, annee));
 		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, mois - 1);
+		cal.set(Calendar.YEAR, annee);
 		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 1);
 
-		// for(){
-		//
-		// }
 		for (int i = 1; i <= imputationToSave.getCalendrier().getJoursDuMois().size(); i++) {
 			imputationDTO = new ImputationDTO();
 			imputationDTO.setJour(0);
 			imputationDTO.setDate(cal.getTime());
 			imputationDTO.setCodeAlliance(codeAlliance);
-			imputationDTO.setCodeProjet(imputationToSave.getMapImputation().keySet().iterator().next());
+			imputationDTO.setIdImputations(idImputations);
+			if (projetService.getProjets().iterator().hasNext())
+				imputationDTO.setCodeProjet(projetService.getProjets().iterator().next().getCodeprojet());
 			cal.add(Calendar.DAY_OF_YEAR, 1);
 			listeImputationDTO.add(imputationDTO);
 		}
-		mapImputation.put("codeProjet", listeImputationDTO);
 
-		imputationToSave.setMapImputation(mapImputation);
+		imputationToSave.setListeImputation(listeImputationDTO);
 
-		return imputationToSave;
+		List<Imputation> listeImputationToSave = transformer.toEntity(imputationToSave.getListeImputation());
+
+		imputationRepository.save(listeImputationToSave);
 	}
 
-	public Imputation update(Imputation entity) {
-		imputationRepository.save(entity);
-		return entity;
+	public List<ImputationsDTO> update(List<ImputationsDTO> listImputationsDTO, String codeAlliance, String moisAnnee) {
+		for (ImputationsDTO dto : listImputationsDTO) {
+//			for (ImputationDTO imputationDTO : dto.getListeImputation()) {
+//				imputationDTO.setCodeProjet(dto.getProjet().getCodeprojet());
+//			}
+			List<Imputation> toBeUpdated = transformer.toEntity(dto.getListeImputation());
+			imputationRepository.save(toBeUpdated);
+		}
+		return findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
 	}
 
 	public void delete(String id) {

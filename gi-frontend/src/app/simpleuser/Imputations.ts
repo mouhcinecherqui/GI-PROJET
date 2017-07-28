@@ -1,7 +1,11 @@
-import { Calendrier } from './Calendrier';
+import {Projet} from '../superuser/projet';
+import {Calendrier} from './Calendrier';
 import {Imputation} from './Imputation';
+
 export class Imputations {
-  calendrier: Calendrier;
-  mapImputation: Map<String, Imputation[]>;
+  id: number;
+  calendrier?: Calendrier;
+  projet?: Projet;
+  listeImputation?: Imputation[];
 
 }

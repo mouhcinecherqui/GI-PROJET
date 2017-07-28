@@ -1,9 +1,7 @@
 package com.ssm.oab.gi.dao.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +25,9 @@ public class Imputation implements Serializable {
 
 	@Column(name = "CODEALLIANCE")
 	private String codeAlliance;
+	
+	@Column(name = "IDIMPUTATIONS")
+	private int idImputations;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,6 +72,14 @@ public class Imputation implements Serializable {
 
 	public void setJour(double jour) {
 		this.jour = jour;
+	}
+
+	public int getIdImputations() {
+		return idImputations;
+	}
+
+	public void setIdImputations(int idImputations) {
+		this.idImputations = idImputations;
 	}
 
 }

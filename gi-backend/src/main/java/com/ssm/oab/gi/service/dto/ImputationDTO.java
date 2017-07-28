@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ImputationDTO {
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date date;
 
 	private double jour;
@@ -16,6 +16,8 @@ public class ImputationDTO {
 	private String codeProjet;
 
 	private String codeAlliance;
+	
+	private int idImputations;
 
 	public Date getDate() {
 		return date;
@@ -57,4 +59,11 @@ public class ImputationDTO {
 		this.id = id;
 	}
 
+	public int getIdImputations() {
+		return idImputations;
+	}
+
+	public void setIdImputations(int idImputations) {
+		this.idImputations = idImputations;
+	}
 }

@@ -1,5 +1,7 @@
 package com.ssm.oab.gi.ws;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,10 +27,17 @@ public class ImputationController {
 	}
 
 	@RequestMapping(value = "/imputations/mounth")
-	public ImputationsDTO findImputationByCodeAllianceAndMonth(@RequestParam String codeAlliance,
+	public List<ImputationsDTO> findImputationByCodeAllianceAndMonth(@RequestParam String codeAlliance,
 			@RequestParam String moisAnnee) {
-		ImputationsDTO res = service.findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
+		List<ImputationsDTO> res = service.findImputationsByCodeAllianceAndMonth(codeAlliance, moisAnnee);
 		return res;
+	}
+
+	@RequestMapping(value = "/imputations", method = RequestMethod.PUT)
+	public List<ImputationsDTO> update(@RequestBody List<ImputationsDTO> listeImputations,
+			@RequestParam String codeAlliance, @RequestParam String moisAnnee) {
+
+		return service.update(listeImputations, codeAlliance, moisAnnee);
 	}
 
 	@RequestMapping(value = "/imputations/{id}")
@@ -41,14 +50,9 @@ public class ImputationController {
 		service.delete(imputation);
 	}
 
-	@RequestMapping(value = "/imputations/{id}", method = RequestMethod.PUT)
-	public void update(@RequestBody Imputation imputation) {
-		service.update(imputation);
-	}
-
 	@RequestMapping(value = "/imputations/{codeAlliance}", method = RequestMethod.POST)
 	public ImputationsDTO create(@PathVariable(value = "codeAlliance") String codeAlliance,
 			@RequestBody ImputationsDTO imputationsToSave) {
-		return service.create(imputationsToSave, codeAlliance);
+		return service.create(imputationsToSave, codeAlliance, "");
 	}
 }

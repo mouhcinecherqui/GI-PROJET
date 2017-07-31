@@ -26,9 +26,10 @@ public class Domaine implements Serializable {
 	public Domaine() {
 	}
 
-	public Domaine(String dmn, String NOMdomaine) {
+	public Domaine(String dmn, String NOMdomaine, String descriptiondmn) {
 		this.dmn = dmn;
 		this.NOMdomaine  = NOMdomaine ;
+		this.descriptiondmn  = descriptiondmn ;
 	}
 
 	public String getDmn() {

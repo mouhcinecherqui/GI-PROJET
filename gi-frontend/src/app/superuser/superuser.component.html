@@ -272,7 +272,8 @@
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelectep(projet)"> </a></th>
 
-							<th><i class="btn btn-danger glyphicon glyphicon-trash" (click)="onDeletep(projet.codeprojet)"></i></th>
+							<th><i class="btn btn-danger glyphicon glyphicon-trash"
+								(click)="onDeletep(projet.codeprojet)"></i></th>
 						</tr>
 					</tbody>
 				</table>
@@ -295,7 +296,8 @@
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelected(domaine)"> </a></th>
 
-							<th><i class="btn btn-danger glyphicon glyphicon-trash" (click)="onDeleted(domaine.dmn)" ></i></th>
+							<th><i class="btn btn-danger glyphicon glyphicon-trash"
+								(click)="onDeleted(domaine.dmn)"></i></th>
 						</tr>
 					</tbody>
 				</table>
@@ -385,23 +387,27 @@
 						<h2>Add Projet</h2>
 						<br>
 						<div class="input-group">
-							<label>Code projet : </label> <input formControlName="codeprojet"
-								class="form-control" type="text" placeholder="Code projet" />
+							<label>Code projet :</label> <input formControlName="codeprojet"
+								[(ngModel)]="selecteProjet.codeprojet" class="form-control"
+								type="text" placeholder="Code projet" />
 						</div>
 						<br>
 						<div>
 							<label>NOM Projet : </label> <input class="form-control"
+								[(ngModel)]="selecteProjet.nomprojet"
 								formControlName="nomprojet" type="text" placeholder="NOM Projet" />
 						</div>
 						<br>
 						<div>
 							<label>NOM complet : </label> <input class="form-control"
+								[(ngModel)]="selecteProjet.nomcomplet"
 								formControlName="nomcomplet" type="text"
 								placeholder="NOM complet" />
 						</div>
 						<br>
 						<div class="input-group">
-							<label>Description du Projet : </label> <input
+							<label>Description du Projet :</label> <input
+								[(ngModel)]="selecteProjet.descriptionprojet"
 								formControlName="descriptionprojet" class="form-control"
 								type="text" placeholder="Description du Projet" />
 						</div>
@@ -422,20 +428,22 @@
 						<h2>Add Domaine</h2>
 						<br>
 						<div class="input-group">
-							<label>DMN : </label> <input class="form-control" type="text"
-								formControlName="dmn" placeholder="DMN" />
+							<label>DMN : </label> <input [(ngModel)]="selectDomaine.dmn"
+								class="form-control" type="text" formControlName="dmn"
+								placeholder="DMN" />
 						</div>
 						<br>
 						<div>
-							<label>NOM domaine : </label> <input class="form-control"
+							<label>NOM domaine : </label> <input
+								[(ngModel)]="selectDomaine.NOMdomaine" class="form-control"
 								formControlName="NOMdomaine" type="text"
 								placeholder="NOM domaine" />
 						</div>
 						<br>
 						<div class="input-group">
-							<label>Description du domaine : </label> <input
-								class="form-control" type="text"
-								formControlName="descriptiondmn"
+							<label>Description du domaine : npm</label> <input
+								class="form-control" [(ngModel)]="selectDomaine.descriptiondmn"
+								type="text" formControlName="descriptiondmn"
 								placeholder="Description du domaine" />
 						</div>
 						<br>

@@ -73,6 +73,25 @@ export class SuperuserComponent implements OnInit {
       descriptiondmn: new FormControl(''),
     });
   }
+  //  updateprojet(listeImputations: Imputations[]): Promise<Imputations[]> {
+  //    console.log('mrs ===>  ' + listeImputations[0].listeImputation[0].jour);
+  //    return this.http.put('/api/imputations?codeAlliance=abcd1234&moisAnnee=' + this.currentMonthYear, this.listeImputations)
+  //      .toPromise()
+  //      .then(response => response.json() as Imputations[]).catch(this.handleError);
+  //  }
+  //    updateuser(listeImputations: Imputations[]): Promise<Imputations[]> {
+  //    console.log('mrs ===>  ' + listeImputations[0].listeImputation[0].jour);
+  //    return this.http.put('/api/imputations?codeAlliance=abcd1234&moisAnnee=' + this.currentMonthYear, this.listeImputations)
+  //      .toPromise()
+  //      .then(response => response.json() as Imputations[]).catch(this.handleError);
+  //  }
+  updatedomaine(dmn: string): Promise<Domaine[]> {
+    console.log('mc ' + dmn);
+    return this.http.put('/api/domaines?dmn=' , dmn)
+      .toPromise()
+      .then(response => response.json() as Domaine[]).catch(this.handleError);
+  }
+
   onSelect(user: User): void {
     console.log(user.codeAlliance);
     console.log(user.dmn);

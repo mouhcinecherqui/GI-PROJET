@@ -17,7 +17,8 @@ public class Domaine implements Serializable {
 	
 	@Column(name = "NOMDOMAINE")
 	private String NOMdomaine;
-
+	@Column(name = "DESCRIPTIONDMN")
+	private String descriptiondmn;
 	@Id
 	@Column(name = "DMN")
 	private String dmn;
@@ -25,9 +26,10 @@ public class Domaine implements Serializable {
 	public Domaine() {
 	}
 
-	public Domaine(String dmn, String NOMdomaine) {
+	public Domaine(String dmn, String NOMdomaine, String descriptiondmn) {
 		this.dmn = dmn;
 		this.NOMdomaine  = NOMdomaine ;
+		this.descriptiondmn  = descriptiondmn ;
 	}
 
 	public String getDmn() {
@@ -44,6 +46,14 @@ public class Domaine implements Serializable {
 
 	public void setNOMdomaine(String NOMdomaine) {
 		this.NOMdomaine = NOMdomaine;
+	}
+
+	public String getDescriptiondmn() {
+		return descriptiondmn;
+	}
+
+	public void setDescriptiondmn(String descriptiondmn) {
+		this.descriptiondmn = descriptiondmn;
 	}
 
 }

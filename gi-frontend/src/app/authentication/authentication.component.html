@@ -21,7 +21,7 @@
 			<div class="checkbox"></div>
 			<label><input type="checkbox"> Se souvenir de moi</label>
 			<p>
-				<a routerLink="/forgetpwd"  routerLinkActive="active-link">Mot de passe oublié</a>
+				<a routerLink="/forgetpwd"  routerLinkActive="active-link" (click)="passwrd()">Mot de passe oublié</a>
 			</p>
 			<button type="submit" class="btn btn-primary" (click)="connectUser(userId.value,  userPwd.value)">connexion</button>
 		</form>

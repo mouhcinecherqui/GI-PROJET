@@ -252,7 +252,6 @@
 			<div class="col-xs-2"></div>
 			<div class="container" class="col-xs-8">
 
-				<br>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -291,7 +290,7 @@
 
 						<tr>
 							<td>{{domaine.dmn}}</td>
-							<td>{{domaine.NOMdomaine}}</td>
+							<td>{{domaine.nomDomaine}}</td>
 							<td>{{domaine.descriptiondmn}}</td>
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelected(domaine)"> </a></th>
@@ -360,7 +359,7 @@
 						<br>
 						<div>
 							<label>NOM domaine : </label> <input class="form-control"
-								formControlName="NOMdomaine" type="text"
+								formControlName="nomDomaine" type="text"
 								placeholder="NOM domaine" />
 						</div>
 						<br>
@@ -384,7 +383,7 @@
 			<div class="col-xs-4">
 				<div *ngIf="selecteProjet">
 					<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
-						<h2>Add Projet</h2>
+						<h2>Edit Projet</h2>
 						<br>
 						<div class="input-group">
 							<label>Code projet :</label> <input formControlName="codeprojet"
@@ -425,7 +424,7 @@
 			<div class="col-xs-4">
 				<div *ngIf="selectDomaine">
 					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
-						<h2>Add Domaine</h2>
+						<h2>Edit Domaine</h2>
 						<br>
 						<div class="input-group">
 							<label>DMN : </label> <input [(ngModel)]="selectDomaine.dmn"
@@ -433,22 +432,22 @@
 								placeholder="DMN" />
 						</div>
 						<br>
-						<div>
+						<div class="input-group">
 							<label>NOM domaine : </label> <input
-								[(ngModel)]="selectDomaine.NOMdomaine" class="form-control"
-								formControlName="NOMdomaine" type="text"
+								[(ngModel)]="selectDomaine.nomDomaine" class="form-control"
+								formControlName="nomDomaine" type="text"
 								placeholder="NOM domaine" />
 						</div>
 						<br>
 						<div class="input-group">
-							<label>Description du domaine : npm</label> <input
+							<label>Description du domaine : </label> <input
 								class="form-control" [(ngModel)]="selectDomaine.descriptiondmn"
 								type="text" formControlName="descriptiondmn"
 								placeholder="Description du domaine" />
 						</div>
 						<br>
 						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
+							routerLinkActive="active-link" class="btn btn-success" (click)="updatedomaine()">Save</button>
 						<button type="reset" class="btn btn-default">Reset</button>
 						<button type="button" class="btn btn-default" (click)="cancel1()">Cancel</button>
 					</form>

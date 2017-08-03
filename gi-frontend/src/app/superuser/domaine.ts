@@ -1,5 +1,5 @@
 export class Domaine {
-  NOMdomaine: string;
+  nomDomaine: string;
   dmn: string;
   descriptiondmn: string;
 }

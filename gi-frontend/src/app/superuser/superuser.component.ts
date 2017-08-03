@@ -69,27 +69,28 @@ export class SuperuserComponent implements OnInit {
       nomprojet: new FormControl(''),
       nomcomplet: new FormControl(''),
       descriptionprojet: new FormControl(''),
-      NOMdomaine: new FormControl(''),
+      nomDomaine: new FormControl(''),
       descriptiondmn: new FormControl(''),
     });
   }
-  //  updateprojet(listeImputations: Imputations[]): Promise<Imputations[]> {
-  //    console.log('mrs ===>  ' + listeImputations[0].listeImputation[0].jour);
-  //    return this.http.put('/api/imputations?codeAlliance=abcd1234&moisAnnee=' + this.currentMonthYear, this.listeImputations)
-  //      .toPromise()
-  //      .then(response => response.json() as Imputations[]).catch(this.handleError);
-  //  }
-  //    updateuser(listeImputations: Imputations[]): Promise<Imputations[]> {
-  //    console.log('mrs ===>  ' + listeImputations[0].listeImputation[0].jour);
-  //    return this.http.put('/api/imputations?codeAlliance=abcd1234&moisAnnee=' + this.currentMonthYear, this.listeImputations)
-  //      .toPromise()
-  //      .then(response => response.json() as Imputations[]).catch(this.handleError);
-  //  }
+
   updatedomaine(dmn: string): Promise<Domaine[]> {
     console.log('mc ' + dmn);
-    return this.http.put('/api/domaines?dmn=' , dmn)
+    return this.http.put('/api/domaines?dmn=', dmn)
       .toPromise()
       .then(response => response.json() as Domaine[]).catch(this.handleError);
+  }
+  updateprojet(codeprojet: string): Promise<Projet[]> {
+    console.log('mcp ' + codeprojet);
+    return this.http.put('/api/projets?codeprojet=', codeprojet)
+      .toPromise()
+      .then(response => response.json() as Projet[]).catch(this.handleError);
+  }
+  updateuser(codeAlliance: string): Promise<User[]> {
+    console.log('mcc ' + codeAlliance);
+    return this.http.put('/api/users?codeAlliance=', codeAlliance)
+      .toPromise()
+      .then(response => response.json() as User[]).catch(this.handleError);
   }
 
   onSelect(user: User): void {
@@ -241,6 +242,8 @@ export class SuperuserComponent implements OnInit {
     this.ifCreate = false;
     this.ifList = false;
     this.ifAdmin = true;
+    this.ifDomaine = false;
+    this.ifProjet = false;
     this.ngOnInit();
   }
 

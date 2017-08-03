@@ -26,7 +26,7 @@ export class AuthenticationComponent {
       this.authentication = false;
       this.router.navigate(['/simpleutilisateur']);
     }
-     if (userId === 'responsable'  && userPwd === 'resp') {
+    if (userId === 'responsable' && userPwd === 'resp') {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }
@@ -35,6 +35,9 @@ export class AuthenticationComponent {
     return this.http.get('/api/authentication')
       .toPromise()
       .then(response => response.json() as User[]);
+  }
+  passwrd() {
+this.authentication = false;
   }
 }
 

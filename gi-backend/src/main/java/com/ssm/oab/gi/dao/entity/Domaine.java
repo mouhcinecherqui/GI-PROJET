@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
 @Entity
 public class Domaine implements Serializable {
 
@@ -14,9 +13,9 @@ public class Domaine implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name = "NOMDOMAINE")
-	private String NOMdomaine;
+	private String nomDomaine;
 	@Column(name = "DESCRIPTIONDMN")
 	private String descriptiondmn;
 	@Id
@@ -24,12 +23,6 @@ public class Domaine implements Serializable {
 	private String dmn;
 
 	public Domaine() {
-	}
-
-	public Domaine(String dmn, String NOMdomaine, String descriptiondmn) {
-		this.dmn = dmn;
-		this.NOMdomaine  = NOMdomaine ;
-		this.descriptiondmn  = descriptiondmn ;
 	}
 
 	public String getDmn() {
@@ -40,20 +33,20 @@ public class Domaine implements Serializable {
 		this.dmn = dmn;
 	}
 
-	public String getNOMdomaine() {
-		return NOMdomaine;
-	}
-
-	public void setNOMdomaine(String NOMdomaine) {
-		this.NOMdomaine = NOMdomaine;
-	}
-
 	public String getDescriptiondmn() {
 		return descriptiondmn;
 	}
 
 	public void setDescriptiondmn(String descriptiondmn) {
 		this.descriptiondmn = descriptiondmn;
+	}
+
+	public String getNomDomaine() {
+		return nomDomaine;
+	}
+
+	public void setNomDomaine(String nomDomaine) {
+		this.nomDomaine = nomDomaine;
 	}
 
 }

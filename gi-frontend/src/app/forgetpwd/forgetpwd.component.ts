@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-forgetpwd',
@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class ForgetpwdComponent implements OnInit {
   forgetpwd = true;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

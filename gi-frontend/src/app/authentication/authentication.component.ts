@@ -30,6 +30,7 @@ export class AuthenticationComponent {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }
+    //property connected -->true
   }
   getUser(): Promise<User[]> {
     return this.http.get('/api/authentication')

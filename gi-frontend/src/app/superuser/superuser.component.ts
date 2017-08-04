@@ -28,7 +28,8 @@ export class SuperuserComponent implements OnInit {
   viewdetails = true;
   ifList = true;
   ifCreate = false;
-  ifAdmin = false;
+  ifAdminProjet = false;
+  ifAdminDomaine = false;
   selectedUser: User;
   ifDomaine = false;
   ifProjet = false;
@@ -222,7 +223,8 @@ export class SuperuserComponent implements OnInit {
   showCreation() {
     this.ifCreate = true;
     this.ifList = false;
-    this.ifAdmin = false;
+    this.ifAdminProjet = false;
+    this.ifAdminDomaine = false;
     this.ngOnInit();
   }
 
@@ -234,19 +236,29 @@ export class SuperuserComponent implements OnInit {
   showList() {
     this.ifCreate = false;
     this.ifList = true;
-    this.ifAdmin = false;
+    this.ifAdminProjet = false;
+    this.ifAdminDomaine = false;
     this.ngOnInit();
   }
 
-  showAdmin() {
+  showAdminProjet() {
     this.ifCreate = false;
     this.ifList = false;
-    this.ifAdmin = true;
+    this.ifAdminProjet = true;
     this.ifDomaine = false;
     this.ifProjet = false;
+    this.ifAdminDomaine = false;
     this.ngOnInit();
   }
-
+  showAdminDomaine() {
+    this.ifCreate = false;
+    this.ifList = false;
+    this.ifAdminProjet = false;
+    this.ifDomaine = false;
+    this.ifProjet = false;
+    this.ifAdminDomaine = true;
+    this.ngOnInit();
+  }
   logoutUser() {
   }
 }

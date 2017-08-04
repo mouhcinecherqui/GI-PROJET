@@ -22,11 +22,6 @@
 					<li><a routerLink="/logout" routerLinkActive="active-link">logout</a></li>
 				</ul>
 			</div>
-			<!-- 			<div class="col-xs-1"> -->
-			<!-- 				<button routerLink="/logout" routerLinkActive="active-link" -->
-			<!-- 					type="submit" class="btn btn-primary btn-sm center-block" -->
-			<!-- 					(click)="logoutUser()">logout</button> -->
-			<!-- 			</div> -->
 		</div>
 
 		<ul class="nav nav-tabs">
@@ -34,15 +29,25 @@
 					collaborateurs</a></li>
 			<li [class.active]="ifCreate"><a (click)="showCreation()">
 					creation</a></li>
-			<li [class.active]="ifAdmin"><a (click)="showAdmin()">Admin</a></li>
+			<li class="dropdown"><a class="dropbtn">Admin</a>
+				<div>
+					<ul class="dropdown-menu">
+						<li [class.active]="ifAdminProjet"><a
+							(click)="showAdminProjet()">Projets</a></li>
+						<li [class.active]="ifAdminDomaine"><a
+							(click)="showAdminDomaine()">Domaines</a></li>
+					</ul>
+				</div></li>
+
 
 			<li>
 				<form class="navbar-form navbar-left"></form>
 			</li>
 
 		</ul>
-		<br> <br>
+
 		<div *ngIf="ifList">
+			<br> <br> <br> <br> <br>
 			<div class="row"></div>
 			<div class="col-xs-4">
 				<!-- 			<h2>Liste de collaborateurs</h2> -->
@@ -146,6 +151,7 @@
 			<router-outlet></router-outlet>
 		</div>
 		<div *ngIf="ifCreate">
+			<br> <br> <br>
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="container" class="col-xs-4">
@@ -247,10 +253,17 @@
 				</div>
 			</div>
 		</div>
-		<div *ngIf="ifAdmin">
+		<div *ngIf="ifAdminProjet">
+			<br>
+			<div class="col-xs-11"></div>
+			<div class="col-xs-1">
+				<button type="button" class="btn btn-sm center-block"
+					(click)="showList()">Back</button>
+			</div>
+			<br> <br> <br> <br>
 			<div class="row"></div>
-			<div class="col-xs-2"></div>
-			<div class="container" class="col-xs-8">
+
+			<div class="container" class="col-xs-7">
 
 				<table class="table table-striped">
 					<thead>
@@ -276,41 +289,14 @@
 						</tr>
 					</tbody>
 				</table>
-				<button type="button" class="btn" (click)="addProjet()">Add</button>
-				<br>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>DMN</th>
-							<th>Nom Domaine</th>
-							<th>Description du domaine</th>
-						</tr>
-					</thead>
-					<tbody *ngFor="let domaine of domaines">
-
-						<tr>
-							<td>{{domaine.dmn}}</td>
-							<td>{{domaine.nomDomaine}}</td>
-							<td>{{domaine.descriptiondmn}}</td>
-							<th><a class="btn btn-info glyphicon glyphicon-pencil"
-								(click)="onSelected(domaine)"> </a></th>
-
-							<th><i class="btn btn-danger glyphicon glyphicon-trash"
-								(click)="onDeleted(domaine.dmn)"></i></th>
-						</tr>
-					</tbody>
-				</table>
-				<button type="button" class="btn btn-success">Save</button>
-				<button type="button" class="btn" (click)="addDomaine()">Add</button>
+				<div class="row"></div>
+				<div class="col-md-11"></div>
+				<div>
+					<button type="button" class="btn" (click)="addProjet()">Add</button>
+				</div>
 			</div>
 			<div class="col-xs-1"></div>
-			<div class="col-xs-1">
-				<button type="button" class="btn btn-sm center-block"
-					(click)="showList()">Back</button>
-			</div>
-			<div class="row"></div>
-			<div class="col-xs-2"></div>
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<div *ngIf="ifProjet">
 					<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
 						<h2>Add Projet</h2>
@@ -345,41 +331,6 @@
 				</div>
 			</div>
 			<router-outlet></router-outlet>
-			<div class="row"></div>
-			<div class="col-xs-2"></div>
-			<div class="col-xs-4">
-				<div *ngIf="ifDomaine">
-					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
-						<h2>Add Domaine</h2>
-						<br>
-						<div class="input-group">
-							<label>DMN : </label> <input class="form-control" type="text"
-								formControlName="dmn" placeholder="DMN" />
-						</div>
-						<br>
-						<div>
-							<label>NOM domaine : </label> <input class="form-control"
-								formControlName="nomDomaine" type="text"
-								placeholder="NOM domaine" />
-						</div>
-						<br>
-						<div class="input-group">
-							<label>Description du domaine : </label> <input
-								class="form-control" type="text"
-								formControlName="descriptiondmn"
-								placeholder="Description du domaine" />
-						</div>
-						<br>
-						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="button" class="btn btn-default" (click)="cancel1()">Cancel</button>
-					</form>
-				</div>
-			</div>
-			<router-outlet></router-outlet>
-			<div class="row"></div>
-			<div class="col-xs-2"></div>
 			<div class="col-xs-4">
 				<div *ngIf="selecteProjet">
 					<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
@@ -419,8 +370,82 @@
 				</div>
 			</div>
 			<router-outlet></router-outlet>
+
+		</div>
+
+		<div *ngIf="ifAdminDomaine">
+			<br>
+			<div class="col-xs-11"></div>
+			<div class="col-xs-1">
+				<button type="button" class="btn btn-sm center-block"
+					(click)="showList()">Back</button>
+			</div>
+			<br> <br> <br> <br>
 			<div class="row"></div>
-			<div class="col-xs-2"></div>
+			<div class="container" class="col-xs-7">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>DMN</th>
+							<th>Nom Domaine</th>
+							<th>Description du domaine</th>
+						</tr>
+					</thead>
+					<tbody *ngFor="let domaine of domaines">
+
+						<tr>
+							<td>{{domaine.dmn}}</td>
+							<td>{{domaine.nomDomaine}}</td>
+							<td>{{domaine.descriptiondmn}}</td>
+							<th><a class="btn btn-info glyphicon glyphicon-pencil"
+								(click)="onSelected(domaine)"> </a></th>
+
+							<th><i class="btn btn-danger glyphicon glyphicon-trash"
+								(click)="onDeleted(domaine.dmn)"></i></th>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="row"></div>
+				<div class="col-md-11"></div>
+				<div>
+					<button type="button" class="btn" (click)="addDomaine()">Add</button>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div *ngIf="ifDomaine">
+					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
+						<h2>Add Domaine</h2>
+						<br>
+						<div class="input-group">
+							<label>DMN : </label> <input class="form-control" type="text"
+								formControlName="dmn" placeholder="DMN" />
+						</div>
+						<br>
+						<div>
+							<label>NOM domaine : </label> <input class="form-control"
+								formControlName="nomDomaine" type="text"
+								placeholder="NOM domaine" />
+						</div>
+						<br>
+						<div class="input-group">
+							<label>Description du domaine : </label> <input
+								class="form-control" type="text"
+								formControlName="descriptiondmn"
+								placeholder="Description du domaine" />
+						</div>
+						<br>
+						<button type="submit" routerLink="/superuser"
+							routerLinkActive="active-link" class="btn btn-success">Save</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+						<button type="button" class="btn btn-default" (click)="cancel1()">Cancel</button>
+					</form>
+				</div>
+			</div>
+			<router-outlet></router-outlet>
+			<div class="row"></div>
+			<div class="col-xs-8"></div>
 			<div class="col-xs-4">
 				<div *ngIf="selectDomaine">
 					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
@@ -447,13 +472,16 @@
 						</div>
 						<br>
 						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success" (click)="updatedomaine()">Save</button>
+							routerLinkActive="active-link" class="btn btn-success"
+							(click)="updatedomaine()">Save</button>
 						<button type="reset" class="btn btn-default">Reset</button>
 						<button type="button" class="btn btn-default" (click)="cancel1()">Cancel</button>
 					</form>
 				</div>
 			</div>
 			<router-outlet></router-outlet>
+
+
 		</div>
 	</div>
 </body>

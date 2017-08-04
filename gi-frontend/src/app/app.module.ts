@@ -23,7 +23,7 @@ import {SimpleutilisateurComponent} from './simpleutilisateur/simpleutilisateur.
 
 const appRoutes: Routes = [
   {path: 'superuser', component: SuperuserComponent}
-  , {path: '#/', redirectTo: '#/superuser', pathMatch: 'prefix'},
+  , {path: '#/superuser', redirectTo: '#/superuser', pathMatch: 'full'},
   {path: 'simpleuser', component: SimpleuserComponent}
   , {path: '#/', redirectTo: '#/creation', pathMatch: 'full'},
   {path: 'logout', component: AuthenticationComponent}

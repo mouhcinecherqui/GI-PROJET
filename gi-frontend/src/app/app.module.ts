@@ -34,6 +34,8 @@ const appRoutes: Routes = [
   , {path: '#/', redirectTo: '#/forgetpwd', pathMatch: 'full'},
   {path: 'simpleutilisateur', component: SimpleutilisateurComponent}
   , {path: '#/', redirectTo: '#/simpleutilisateur', pathMatch: 'full'},
+    {path: 'moncompte', component: MoncompteComponent}
+  , {path: '#/', redirectTo: '#/moncompte', pathMatch: 'full'},
 ];
 
 

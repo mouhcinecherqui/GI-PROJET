@@ -1,18 +1,33 @@
 
-<div class="jumbotron " >
-	<h1 style="color:white;"  class="text-center">G.I</h1>
-<!-- 	<img src="sofrecom.png" alt="logo" width="60" height="60"/> -->
+<div class="jumbotron ">
+	<h1 style="color: white;" class="text-center">G.I</h1>
+	<!-- 	<img src="sofrecom.png" alt="logo" width="60" height="60"/> -->
 </div>
-
-
- <app-authentication>Loading...</app-authentication>
-<!-- <app-simpleuser>Loading...</app-simpleuser>  -->
-<!-- <app-superuser>Loading...</app-superuser>  -->
-<!-- <app-forgetpwd>Loading...</app-forgetpwd>-->
-
+<!-- <div *ngIf="authent()"> -->
+<div *ngIf="authent()">
+<div *ngIf="auth">
+<app-authentication base href="/">Loading...</app-authentication>
+</div>
+<!-- </div> -->
+<div *ngIf="showSimpleUser">
+	<app-simpleuser base href="/simpleuser">Loading...</app-simpleuser>
+</div>
+<div *ngIf="showUser">
+	<app-simpleutilisateur base href="/simpleutilisateur">Loading...</app-simpleutilisateur>
+</div>
+<div *ngIf="showAdmin">
+	<app-superuser base href="/superuser">Loading...</app-superuser>
+</div>
+<div *ngIf="showPwd">
+	<app-forgetpwd base href="/forgetpwd">Loading...</app-forgetpwd>
+</div>
+<div *ngIf="showCompte">
+	<app-moncompte base href="/moncompte">Loading...</app-moncompte>
+</div>
+</div>
 <footer class="container-fluid text-center">
-	<h4 style="color:white;">G.I Copyright</h4>
+	<h4 style="color: white;">G.I Copyright</h4>
 
 </footer>
 
-    
+

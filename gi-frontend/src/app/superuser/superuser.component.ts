@@ -36,7 +36,8 @@ export class SuperuserComponent implements OnInit {
   selecteProjet: Projet;
   selectDomaine: Domaine;
   router: Router;
-
+  editProjet = false;
+  editDomaine = false;
 
   public search = new FormControl();
 
@@ -104,9 +105,11 @@ export class SuperuserComponent implements OnInit {
     this.selectedUser = user;
   }
   onSelectep(projet: Projet): void {
+    this.editProjet = true;
     this.selecteProjet = projet;
   }
   onSelected(domaine: Domaine): void {
+    this.editDomaine = true;
     this.selectDomaine = domaine;
   }
 
@@ -149,6 +152,13 @@ export class SuperuserComponent implements OnInit {
   }
   cancel1() {
     this.ifDomaine = false;
+  }
+  cancel2() {
+
+    this.editProjet = false;
+  }
+  cancel3() {
+    this.editDomaine = false;
   }
   getRoles(): Promise<Role[]> {
     return this.http.get('/api/roles')

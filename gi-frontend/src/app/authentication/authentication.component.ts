@@ -30,7 +30,7 @@ export class AuthenticationComponent {
       this.authentication = false;
       this.router.navigate(['/superuser']);
     }
-    //property connected -->true
+    // property connected -->true
   }
   getUser(): Promise<User[]> {
     return this.http.get('/api/authentication')
@@ -38,7 +38,7 @@ export class AuthenticationComponent {
       .then(response => response.json() as User[]);
   }
   passwrd() {
-this.authentication = false;
+    this.authentication = false;
   }
 }
 

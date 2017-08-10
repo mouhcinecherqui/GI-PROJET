@@ -5,13 +5,11 @@
 			<div class="col-xs-2">
 				<select style="text-align: center;" #select
 					(change)="onChange(select.value)" class="form-control">
-					<option>ALL</option>
+					<option>Tout</option>
 					<option *ngFor="let domaine of domaines" [value]="domaine.dmn">{{domaine.dmn}}</option>
 				</select>
-
 			</div>
 			<div class="col-xs-3"></div>
-
 			<div class="dropdown" dropdown [dropdownToggle]="false"
 				(onOpen)="doSomeActionOnOpen()" (onClose)="doSomeActionOnClose()">
 				<button class="btn btn-primary" dropdown-open>
@@ -19,11 +17,11 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li><a routerLink="/moncompte">changer mot de passe</a></li>
-					<li><a routerLink="/logout" routerLinkActive="active-link">logout</a></li>
+					<li><a routerLink="/logout" routerLinkActive="active-link">Se
+							deconnecter</a></li>
 				</ul>
 			</div>
 		</div>
-
 		<ul class="nav nav-tabs">
 			<li [class.active]="ifList"><a (click)="showList()">Liste de
 					collaborateurs</a></li>
@@ -38,24 +36,19 @@
 							(click)="showAdminDomaine()">Domaines</a></li>
 					</ul>
 				</div></li>
-
-
 			<li>
 				<form class="navbar-form navbar-left"></form>
 			</li>
-
 		</ul>
-
 		<div *ngIf="ifList">
 			<br> <br> <br> <br>
 			<div class="row"></div>
 			<div class="col-xs-4">
-				<!-- 			<h2>Liste de collaborateurs</h2> -->
 				<div class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-search"></i></span><input
 						[formControl]="search" type="text" class="form-control"
-						name="search" [value]="searchKey"  placeholder="Search">
+						name="search" [value]="searchKey" placeholder="Search">
 				</div>
 			</div>
 			<div class="row"></div>
@@ -67,18 +60,17 @@
 							<th>Prenom</th>
 							<th>Nom</th>
 							<th>Code Alliance</th>
-							<th>view details</th>
+							<th>Voir details</th>
 						</tr>
 					</thead>
 					<tbody *ngFor='let user of users | myfilter: searchKey'>
-
 						<tr>
 							<td>{{user.firstName}}</td>
 							<td>{{user.lastName}}</td>
 							<td>{{user.codeAlliance}}</td>
 							<th><p>
 									<a routerLink="/viewdetails"
-										(click)="getDetails(user.codeAlliance)">view details</a>
+										(click)="getDetails(user.codeAlliance)">voir details</a>
 								</p></th>
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelect(user)"> </a></th>
@@ -86,66 +78,66 @@
 							<th><i class="btn btn-danger glyphicon glyphicon-trash"
 								(click)="onDelete(user.codeAlliance)"></i></th>
 							<th><i class="btn btn-def glyphicon glyphicon-export"></i></th>
-
 						</tr>
 					</tbody>
 				</table>
 				<div class="row"></div>
 				<div class="col-md-11"></div>
 				<div>
-					<button type="button" class="btn btn-primary">Export All</button>
+					<button type="button" class="btn btn-primary">Exporter
+						tout</button>
 				</div>
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-3">
-
-				<div *ngIf="selectedUser">
-					<h2>{{selectedUser.firstName}} {{selectedUser.lastName}}
-						details!</h2>
-					<br>
-					<div class="input-group">
-						<label>Code Alliance: </label> <input class="form-control"
-							type="text" [(ngModel)]="selectedUser.codeAlliance"
-							placeholder="CodeAlliance" disabled />
+				<div *ngIf="openedit">
+					<div *ngIf="selectedUser">
+						<h2>{{selectedUser.firstName}} {{selectedUser.lastName}}
+							details!</h2>
+						<br>
+						<div class="input-group">
+							<label>Code Alliance: </label> <input class="form-control"
+								type="text" [(ngModel)]="selectedUser.codeAlliance"
+								placeholder="CodeAlliance" disabled />
+						</div>
+						<br>
+						<div>
+							<label>Prenom: </label> <input class="form-control" type="text"
+								[(ngModel)]="selectedUser.firstName" placeholder="Prenom" />
+						</div>
+						<br>
+						<div class="input-group">
+							<label>Nom: </label> <input class="form-control" type="text"
+								[(ngModel)]="selectedUser.lastName" placeholder="Nom" />
+						</div>
+						<br>
+						<div class="input-group">
+							<label>Email: </label> <input class="form-control" type="text"
+								[(ngModel)]="selectedUser.email" placeholder="Email" />
+						</div>
+						<br>
+						<div class="input-group">
+							<label>Role: </label> <select style="text-align: center"
+								name="Domaine" class="form-control">
+								<option *ngFor="let role of roles"
+									[selected]="role.role === selectedUser.role">{{role.role}}</option>
+							</select>
+						</div>
+						<br>
+						<div class="input-group">
+							<label>Domaine: </label> <select style="text-align: center"
+								name="Domaine" class="form-control">
+								<option *ngFor="let domaine of domaines"
+									[selected]="domaine.dmn === selectedUser.dmn">{{domaine.dmn}}</option>
+							</select>
+						</div>
+						<br>
+						<button type="submit" routerLink="/superuser"
+							routerLinkActive="active-link" class="btn btn-success"
+							(click)="updateuser()">sauvgarder</button>
+						<button type="reset" class="btn btn-default">Renitialiser</button>
+						<button type="button" class="btn btn-default" (click)="cancel4()">Annuler</button>
 					</div>
-					<br>
-					<div>
-						<label>FirstName: </label> <input class="form-control" type="text"
-							[(ngModel)]="selectedUser.firstName" placeholder="FirstName" />
-					</div>
-					<br>
-					<div class="input-group">
-						<label>LastName: </label> <input class="form-control" type="text"
-							[(ngModel)]="selectedUser.lastName" placeholder="LastName" />
-					</div>
-					<br>
-					<div class="input-group">
-						<label>Email: </label> <input class="form-control" type="text"
-							[(ngModel)]="selectedUser.email" placeholder="Email" />
-					</div>
-					<br>
-					<div class="input-group">
-						<label>Role: </label> <select style="text-align: center"
-							name="Domaine" class="form-control">
-
-							<option *ngFor="let role of roles"
-								[selected]="role.role === selectedUser.role">{{role.role}}</option>
-						</select>
-					</div>
-					<br>
-					<div class="input-group">
-						<label>Domaine: </label> <select style="text-align: center"
-							name="Domaine" class="form-control">
-
-							<option *ngFor="let domaine of domaines"
-								[selected]="domaine.dmn === selectedUser.dmn">{{domaine.dmn}}</option>
-						</select>
-					</div>
-
-					<br>
-					<button type="submit" routerLink="/superuser"
-						routerLinkActive="active-link" class="btn btn-success" (click)="updateuser()">Save</button>
-					<button type="reset" class="btn btn-default">Reset</button>
 				</div>
 			</div>
 			<router-outlet></router-outlet>
@@ -155,7 +147,7 @@
 			<div class="col-xs-11"></div>
 			<div class="col-xs-1">
 				<button type="button" class="btn btn-sm center-block"
-					(click)="showList()">Back</button>
+					(click)="showList()">Retour</button>
 			</div>
 			<br> <br>
 			<div class="row">
@@ -167,20 +159,16 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input
 								formControlName="firstName" class="form-control" type="text"
-								name="firstName" placeholder="firstName" required>
-
-
-
+								name="firstName" placeholder="Prenom" required>
 							<!-- 							<span *ngIf="form.controls.firstName.errors?.required" -->
 							<!-- 								class="glyphicon glyphicon-remove form-control-feedback"></span> -->
 						</div>
-
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="text"
 								formControlName="lastName" class="form-control" name="lastName"
-								placeholder="lastName" required>
+								placeholder="Nom" required>
 						</div>
 						<!-- 						<div> -->
 						<!-- 							<p *ngIf="form.controls.lastName.errors?.required" -->
@@ -191,12 +179,8 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input type="password"
 								formControlName="password" class="form-control" name="password"
-								placeholder="Password" required>
+								placeholder="Mot de passe" required>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<p *ngIf="form.controls.lastName.errors?.required" -->
-						<!-- 								style="color: red;">password required!</p> -->
-						<!-- 						</div> -->
 						<br> <br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -204,11 +188,6 @@
 								formControlName="codeAlliance" class="form-control"
 								name="codeAlliance" placeholder="Code Alliance" required>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<p *ngIf="form.controls.CodeAlliance.errors?.required" -->
-						<!-- 								style="color: red;">CodeAlliance required!</p> -->
-						<!-- 						</div> -->
-
 						<br> <br>
 						<div class=" form-group">
 							<select style="text-align: center" name="role"
@@ -217,23 +196,14 @@
 								<option *ngFor="let role of roles">{{role.role}}</option>
 							</select>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<p *ngIf="form.controls.role.errors?.required" -->
-						<!-- 								style="color: red;">role required!</p> -->
-						<!-- 						</div> -->
 						<br>
 						<div class=" form-group">
 							<select style="text-align: center;" class="form-control"
 								formControlName="dmn" name="dmn" required>
-								<option>ALL</option>
+								<option>Tout</option>
 								<option *ngFor="let domaine of domaines">{{domaine.dmn}}</option>
 							</select>
-
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<p *ngIf="form.controls.dmn.errors?.required" -->
-						<!-- 								style="color: red;">domaine required!</p> -->
-						<!-- 						</div> -->
 						<br>
 						<div class="input-group">
 							<span class="input-group-addon"><i
@@ -241,16 +211,10 @@
 								formControlName="email" type="email" class="form-control"
 								name="email" placeholder="email" required>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<p *ngIf="form.controls.email.errors?.required" -->
-						<!-- 								style="color: red;">email required!</p> -->
-						<!-- 						</div> -->
 						<br> <br>
-
-						<button type="submit" class="btn btn-success" value="submit">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
+						<button type="submit" class="btn btn-success" value="submit">Sauvegarder</button>
+						<button type="reset" class="btn btn-default">Renitialiser</button>
 					</form>
-
 				</div>
 			</div>
 		</div>
@@ -259,13 +223,11 @@
 			<div class="col-xs-11"></div>
 			<div class="col-xs-1">
 				<button type="button" class="btn btn-sm center-block"
-					(click)="showList()">Back</button>
+					(click)="showList()">Retour</button>
 			</div>
 			<br> <br> <br> <br>
 			<div class="row"></div>
-
 			<div class="container" class="col-xs-7">
-
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -276,7 +238,6 @@
 						</tr>
 					</thead>
 					<tbody *ngFor="let projet of projets">
-
 						<tr>
 							<td>{{projet.codeprojet}}</td>
 							<td>{{projet.nomprojet}}</td>
@@ -284,7 +245,6 @@
 							<td>{{projet.descriptionprojet}}</td>
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelectep(projet)"> </a></th>
-
 							<th><i class="btn btn-danger glyphicon glyphicon-trash"
 								(click)="onDeletep(projet.codeprojet)"></i></th>
 						</tr>
@@ -293,14 +253,14 @@
 				<div class="row"></div>
 				<div class="col-md-11"></div>
 				<div>
-					<button type="button" class="btn" (click)="addProjet()">Add</button>
+					<button type="button" class="btn" (click)="addProjet()">Ajouter</button>
 				</div>
 			</div>
 			<div class="col-xs-1"></div>
 			<div class="col-xs-3">
 				<div *ngIf="ifProjet">
 					<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
-						<h2>Add Projet</h2>
+						<h2>Ajouter Projet</h2>
 						<br>
 						<div class="input-group">
 							<label>Code projet : </label> <input formControlName="codeprojet"
@@ -309,13 +269,13 @@
 						<br>
 						<div>
 							<label>NOM Projet : </label> <input class="form-control"
-								formControlName="nomprojet" type="text" placeholder="NOM Projet" />
+								formControlName="nomprojet" type="text" placeholder="Nom Projet" />
 						</div>
 						<br>
 						<div>
 							<label>NOM complet : </label> <input class="form-control"
 								formControlName="nomcomplet" type="text"
-								placeholder="NOM complet" />
+								placeholder="Nom complet" />
 						</div>
 						<br>
 						<div class="input-group">
@@ -325,69 +285,67 @@
 						</div>
 						<br>
 						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+							routerLinkActive="active-link" class="btn btn-success">Sauvegarder</button>
+						<button type="reset" class="btn btn-default">Renitialiser</button>
+						<button type="button" class="btn btn-default" (click)="cancel()">Annuler</button>
 					</form>
 				</div>
 			</div>
 			<router-outlet></router-outlet>
 			<div class="col-xs-1"></div>
 			<div class="col-xs-3">
-			<div *ngIf="editProjet">
-				<div *ngIf="selecteProjet">
-					<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
-						<h2>Edit Projet</h2>
-						<br>
-						<div class="input-group">
-							<label>Code projet :</label> <input formControlName="codeprojet"
-								[(ngModel)]="selecteProjet.codeprojet" class="form-control"
-								type="text" placeholder="Code projet" />
-						</div>
-						<br>
-						<div>
-							<label>NOM Projet : </label> <input class="form-control"
-								[(ngModel)]="selecteProjet.nomprojet"
-								formControlName="nomprojet" type="text" placeholder="NOM Projet" />
-						</div>
-						<br>
-						<div>
-							<label>NOM complet : </label> <input class="form-control"
-								[(ngModel)]="selecteProjet.nomcomplet"
-								formControlName="nomcomplet" type="text"
-								placeholder="NOM complet" />
-						</div>
-						<br>
-						<div class="input-group">
-							<label>Description du Projet :</label> <input
-								[(ngModel)]="selecteProjet.descriptionprojet"
-								formControlName="descriptionprojet" class="form-control"
-								type="text" placeholder="Description du Projet" />
-						</div>
-						<br>
-						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="button" class="btn btn-default" (click)="cancel2()">Cancel</button>
-					</form>
-				</div>
+				<div *ngIf="editProjet">
+					<div *ngIf="selecteProjet">
+						<form [formGroup]="form" (ngSubmit)="onSubmitp(form.value)">
+							<h2>Modifier Projet</h2>
+							<br>
+							<div class="input-group">
+								<label>Code projet :</label> <input formControlName="codeprojet"
+									[(ngModel)]="selecteProjet.codeprojet" class="form-control"
+									type="text" placeholder="Code projet" />
+							</div>
+							<br>
+							<div>
+								<label>NOM Projet : </label> <input class="form-control"
+									[(ngModel)]="selecteProjet.nomprojet"
+									formControlName="nomprojet" type="text"
+									placeholder="Nom Projet" />
+							</div>
+							<br>
+							<div>
+								<label>NOM complet : </label> <input class="form-control"
+									[(ngModel)]="selecteProjet.nomcomplet"
+									formControlName="nomcomplet" type="text"
+									placeholder="Nom complet" />
+							</div>
+							<br>
+							<div class="input-group">
+								<label>Description du Projet :</label> <input
+									[(ngModel)]="selecteProjet.descriptionprojet"
+									formControlName="descriptionprojet" class="form-control"
+									type="text" placeholder="Description du Projet" />
+							</div>
+							<br>
+							<button type="submit" routerLink="/superuser"
+								routerLinkActive="active-link" class="btn btn-success">Sauvegarder</button>
+							<button type="reset" class="btn btn-default">Renitialiser</button>
+							<button type="button" class="btn btn-default" (click)="cancel2()">Annuler</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<router-outlet></router-outlet>
-
 		</div>
-
 		<div *ngIf="ifAdminDomaine">
 			<br>
 			<div class="col-xs-11"></div>
 			<div class="col-xs-1">
 				<button type="button" class="btn btn-sm center-block"
-					(click)="showList()">Back</button>
+					(click)="showList()">Retour</button>
 			</div>
 			<br> <br> <br> <br>
 			<div class="row"></div>
 			<div class="container" class="col-xs-7">
-
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -397,30 +355,27 @@
 						</tr>
 					</thead>
 					<tbody *ngFor="let domaine of domaines">
-
 						<tr>
 							<td>{{domaine.dmn}}</td>
 							<td>{{domaine.nomDomaine}}</td>
 							<td>{{domaine.descriptiondmn}}</td>
 							<th><a class="btn btn-info glyphicon glyphicon-pencil"
 								(click)="onSelected(domaine)"> </a></th>
-
 							<th><i class="btn btn-danger glyphicon glyphicon-trash"
 								(click)="onDeleted(domaine.dmn)"></i></th>
 						</tr>
 					</tbody>
 				</table>
-
 				<div class="row"></div>
 				<div class="col-md-11"></div>
 				<div>
-					<button type="button" class="btn" (click)="addDomaine()">Add</button>
+					<button type="button" class="btn" (click)="addDomaine()">Ajouter</button>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div *ngIf="ifDomaine">
 					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
-						<h2>Add Domaine</h2>
+						<h2>Ajouter Domaine</h2>
 						<br>
 						<div class="input-group">
 							<label>DMN : </label> <input class="form-control" type="text"
@@ -430,7 +385,7 @@
 						<div>
 							<label>NOM domaine : </label> <input class="form-control"
 								formControlName="nomDomaine" type="text"
-								placeholder="NOM domaine" />
+								placeholder="Nom domaine" />
 						</div>
 						<br>
 						<div class="input-group">
@@ -441,53 +396,50 @@
 						</div>
 						<br>
 						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="button" class="btn btn-default" (click)="cancel1()">Cancel</button>
+							routerLinkActive="active-link" class="btn btn-success">Sauvegarder</button>
+						<button type="reset" class="btn btn-default">Renitialiser</button>
+						<button type="button" class="btn btn-default" (click)="cancel1()">Annuler</button>
 					</form>
 				</div>
 			</div>
 			<router-outlet></router-outlet>
 			<div class="col-xs-3">
-			<div *ngIf="editDomaine">
-				<div *ngIf="selectDomaine">
-					<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
-						<h2>Edit Domaine</h2>
-						<br>
-						<div class="input-group">
-							<label>DMN : </label> <input [(ngModel)]="selectDomaine.dmn"
-								class="form-control" type="text" formControlName="dmn"
-								placeholder="DMN" />
-						</div>
-						<br>
-						<div class="input-group">
-							<label>NOM domaine : </label> <input
-								[(ngModel)]="selectDomaine.nomDomaine" class="form-control"
-								formControlName="nomDomaine" type="text"
-								placeholder="NOM domaine" />
-						</div>
-						<br>
-						<div class="input-group">
-							<label>Description du domaine : </label> <input
-								class="form-control" [(ngModel)]="selectDomaine.descriptiondmn"
-								type="text" formControlName="descriptiondmn"
-								placeholder="Description du domaine" />
-						</div>
-						<br>
-						<button type="submit" routerLink="/superuser"
-							routerLinkActive="active-link" class="btn btn-success"
-							(click)="updatedomaine()">Save</button>
-						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="button" class="btn btn-default" (click)="cancel3()">Cancel</button>
-					</form>
+				<div *ngIf="editDomaine">
+					<div *ngIf="selectDomaine">
+						<form [formGroup]="form" (ngSubmit)="onSubmitd(form.value)">
+							<h2>Modifier Domaine</h2>
+							<br>
+							<div class="input-group">
+								<label>DMN : </label> <input [(ngModel)]="selectDomaine.dmn"
+									class="form-control" type="text" formControlName="dmn"
+									placeholder="DMN" />
+							</div>
+							<br>
+							<div class="input-group">
+								<label>NOM domaine : </label> <input
+									[(ngModel)]="selectDomaine.nomDomaine" class="form-control"
+									formControlName="nomDomaine" type="text"
+									placeholder="Nom domaine" />
+							</div>
+							<br>
+							<div class="input-group">
+								<label>Description du domaine : </label> <input
+									class="form-control" [(ngModel)]="selectDomaine.descriptiondmn"
+									type="text" formControlName="descriptiondmn"
+									placeholder="Description du domaine" />
+							</div>
+							<br>
+							<button type="submit" routerLink="/superuser"
+								routerLinkActive="active-link" class="btn btn-success"
+								(click)="updatedomaine()">Sauvegarder</button>
+							<button type="reset" class="btn btn-default">Renitialiser</button>
+							<button type="button" class="btn btn-default" (click)="cancel3()">Annuler</button>
+						</form>
+					</div>
 				</div>
 			</div>
-			</div>
 			<router-outlet></router-outlet>
-
-
 		</div>
 	</div>
 </body>
 <router-outlet></router-outlet>
-

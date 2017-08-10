@@ -24,19 +24,19 @@ import {SimpleutilisateurComponent} from './simpleutilisateur/simpleutilisateur.
 const appRoutes: Routes = [
   {path: 'superuser', component: SuperuserComponent, pathMatch: 'full'}
   ,
-  {path: 'simpleuser', component: SimpleuserComponent ,  pathMatch: 'full'}
-  , 
-  {path: 'logout', component: AuthenticationComponent ,  pathMatch: 'full'}
+  {path: 'simpleuser', component: SimpleuserComponent, pathMatch: 'full'}
   ,
-  {path: 'viewdetails', component: SimpleuserComponent ,  pathMatch: 'full'}
-  , 
-  {path: 'forgetpwd', component: ForgetpwdComponent ,  pathMatch: 'full'}
-  , 
-  {path: 'simpleutilisateur', component: SimpleutilisateurComponent ,  pathMatch: 'full'}
+  {path: 'logout', component: AuthenticationComponent, pathMatch: 'full'}
   ,
-  {path: 'moncompte', component: MoncompteComponent ,  pathMatch: 'full'}
+  {path: 'viewdetails', component: SimpleuserComponent, pathMatch: 'full'}
   ,
-   {path: '#/', component: AuthenticationComponent ,  pathMatch: 'full'}
+  {path: 'forgetpwd', component: ForgetpwdComponent, pathMatch: 'full'}
+  ,
+  {path: 'simpleutilisateur', component: SimpleutilisateurComponent, pathMatch: 'full'}
+  ,
+  {path: 'moncompte', component: MoncompteComponent, pathMatch: 'full'}
+  ,
+  {path: '#/', component: AuthenticationComponent, pathMatch: 'full'}
 ];
 
 

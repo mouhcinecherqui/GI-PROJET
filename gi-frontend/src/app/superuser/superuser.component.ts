@@ -38,7 +38,7 @@ export class SuperuserComponent implements OnInit {
   router: Router;
   editProjet = false;
   editDomaine = false;
-
+  openedit = false;
   public search = new FormControl();
 
   constructor(private http: Http) {}
@@ -102,6 +102,7 @@ export class SuperuserComponent implements OnInit {
     console.log(user.firstName);
     console.log(user.lastName);
     console.log(user.role);
+    this.openedit = true;
     this.selectedUser = user;
   }
   onSelectep(projet: Projet): void {
@@ -112,8 +113,6 @@ export class SuperuserComponent implements OnInit {
     this.editDomaine = true;
     this.selectDomaine = domaine;
   }
-
-
   onSubmit = function(user) {
     this.http.post('/api/users', user).subscribe(response => response.json() as User[]
     );
@@ -133,10 +132,10 @@ export class SuperuserComponent implements OnInit {
   };
   doSomeActionOnOpen() {
     console.log('hi');
-  };
+  }
   doSomeActionOnClose() {
     console.log('bye');
-  };
+  }
   addProjet() {
     this.ifProjet = true;
     console.log('mc');
@@ -145,6 +144,9 @@ export class SuperuserComponent implements OnInit {
     this.ifDomaine = true;
 
     console.log('ch');
+  }
+  cancel4() {
+    this.openedit = false;
   }
   cancel() {
 
@@ -248,6 +250,7 @@ export class SuperuserComponent implements OnInit {
     this.ifList = true;
     this.ifAdminProjet = false;
     this.ifAdminDomaine = false;
+    this.openedit = false;
     this.ngOnInit();
   }
 

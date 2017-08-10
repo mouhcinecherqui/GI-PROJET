@@ -19,19 +19,4 @@ export class AppComponent {
     return true;
 
   }
-  //  details() {
-  //    this.auth = false;
-  //  }
-  //  user() {
-  //    this.auth = true;
-  //  }
-  //  admin() {
-  //    this.auth = true;
-  //  }
-  //  pwd() {
-  //    this.auth = true;
-  //  }
-  //  compte() {
-  //    this.auth = true;
-  //  }
 }
